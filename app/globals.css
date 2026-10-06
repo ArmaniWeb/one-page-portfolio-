@@ -145,7 +145,7 @@
 
 .learning-panel { position: relative; overflow: hidden; border-color: rgba(91, 140, 255, .14); }
 .learning-panel::after { position: absolute; top: -3rem; right: -5rem; width: 15rem; height: 12rem; content: ''; border-radius: 50%; background: rgba(139, 124, 255, .035); filter: blur(50px); pointer-events: none; }
-.project-02 { border-color: rgba(125, 211, 252, .18); }.project-03 { border-color: rgba(139, 124, 255, .18); }.project-04 { border-color: rgba(91, 140, 255, .18); }
+.project-02 { border-color: rgba(139, 124, 255, .22); }.project-03 { border-color: rgba(125, 211, 252, .18); }.project-04 { border-color: rgba(91, 140, 255, .18); }.project-05 { border-color: rgba(255, 122, 69, .14); }
 
 @keyframes hero-microgrid-drift { to { transform: translate3d(12px, 12px, 0); } }
 @keyframes hero-contour-drift { to { transform: translate3d(18px, -8px, 0) rotate(-13deg); opacity: .8; } }
@@ -208,37 +208,41 @@ body {
 .connector { fill: none; stroke: rgba(91, 140, 255, 0.3); stroke-width: 1.25; vector-effect: non-scaling-stroke; transition: stroke 260ms ease, stroke-width 260ms ease; }
 .diagram-canvas:has(.project-node:hover) .connector { stroke: rgba(91, 140, 255, 0.16); }
 .diagram-canvas:has(.project-01:hover) .connector-armani,
-.diagram-canvas:has(.project-02:hover) .connector-nexus,
-.diagram-canvas:has(.project-03:hover) .connector-forex,
-.diagram-canvas:has(.project-04:hover) .connector-merdicrat { stroke: rgba(125, 211, 252, 0.82); stroke-width: 2; }
+.diagram-canvas:has(.project-02:hover) .connector-sales,
+.diagram-canvas:has(.project-03:hover) .connector-nexus,
+.diagram-canvas:has(.project-04:hover) .connector-forex,
+.diagram-canvas:has(.project-05:hover) .connector-merdicrat { stroke: rgba(125, 211, 252, 0.82); stroke-width: 2; }
 .anchor { fill: #080b12; stroke: #5b8cff; stroke-width: 1.5; transition: stroke 260ms ease, r 260ms ease; }
 .pulse { fill: #7dd3fc; r: 3; opacity: 0.8; }
 .project-node { position: absolute; z-index: 2; padding: 19px 21px; border: 1px solid #243149; border-radius: 15px; background: #101722; box-shadow: 0 12px 30px rgba(0,0,0,0.12); transition: transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease; }
 .project-node:hover { transform: translateY(-3px); border-color: #5b8cff; box-shadow: 0 14px 34px rgba(27, 61, 125, 0.2); }
 .project-node:hover .project-status-dot { background: #ff7a45; }
-.project-01 { left: 5%; top: 7%; width: 34%; min-height: 164px; border-radius: 18px 18px 18px 5px; }
-.project-02 { right: 4%; top: 5%; width: 30%; min-height: 178px; }
-.project-03 { right: 4%; bottom: 8%; width: 32%; min-height: 151px; border-radius: 5px 18px 18px 18px; }
-.project-04 { left: 5%; bottom: 9%; width: 30%; min-height: 145px; }
-.system-core { position: absolute; left: 44%; top: 50%; z-index: 3; display: flex; width: 164px; height: 164px; transform: translate(-50%, -50%); flex-direction: column; align-items: center; justify-content: center; border: 1px solid #4b6a9f; border-radius: 30%; background: #1b2a45; box-shadow: inset 0 0 0 7px rgba(91, 140, 255, 0.06), 0 0 38px rgba(91, 140, 255, 0.12); }
+.project-01 { left: 4%; top: 5%; width: 30%; min-height: 176px; border-radius: 18px 18px 18px 5px; }
+.project-02 { right: 4%; top: 4%; width: 32%; min-height: 205px; border-radius: 18px 18px 6px 18px; }
+.project-03 { right: 2.5%; top: 39%; width: 29%; min-height: 176px; }
+.project-04 { right: 17%; bottom: 4%; width: 29%; min-height: 150px; border-radius: 5px 18px 18px 18px; }
+.project-05 { left: 4%; bottom: 5%; width: 29%; min-height: 145px; }
+.system-core { position: absolute; left: 44%; top: 48%; z-index: 3; display: flex; width: 164px; height: 164px; transform: translate(-50%, -50%); flex-direction: column; align-items: center; justify-content: center; border: 1px solid #4b6a9f; border-radius: 30%; background: #1b2a45; box-shadow: inset 0 0 0 7px rgba(91, 140, 255, 0.06), 0 0 38px rgba(91, 140, 255, 0.12); }
 .core-ring { position: absolute; inset: 17px; display: grid; place-items: center; border: 1px solid rgba(91, 140, 255, 0.3); border-radius: 50%; }
 .core-ring span { width: 7px; height: 7px; border-radius: 50%; background: #ff7a45; box-shadow: 0 0 12px rgba(255, 122, 69, 0.7); }
 .diagram-annotation { position: absolute; z-index: 1; font-family: var(--font-mono); font-size: 10px; letter-spacing: .14em; color: #6f7c91; }
-.annotation-armani { left: 36%; top: 32%; }.annotation-nexus { left: 67%; top: 29%; }.annotation-forex { left: 65%; top: 65%; }.annotation-merdicrat { left: 31%; top: 70%; }
+.annotation-armani { left: 31%; top: 28%; }.annotation-sales { left: 66%; top: 27%; }.annotation-nexus { left: 70%; top: 49%; }.annotation-forex { left: 57%; top: 75%; }.annotation-merdicrat { left: 28%; top: 75%; }
 .corner-mark { position: absolute; z-index: 1; width: 26px; height: 26px; border-color: rgba(91, 140, 255, 0.28); }.corner-top { top: 18px; right: 18px; border-top: 1px solid; border-right: 1px solid; }.corner-bottom { bottom: 18px; left: 18px; border-bottom: 1px solid; border-left: 1px solid; }
 
 @media (max-width: 1099px) and (min-width: 768px) {
-  .diagram-canvas { min-height: 660px; }
+  .diagram-canvas { min-height: 820px; }
   .project-node { padding: 15px; }
-  .project-01 { left: 3%; top: 6%; width: 34%; }
-  .project-02 { right: 3%; top: 6%; width: 34%; }
-  .project-03 { right: 3%; bottom: 6%; width: 34%; }
-  .project-04 { left: 3%; bottom: 6%; width: 34%; }
-  .system-core { left: 50%; width: 142px; height: 142px; }
-  .annotation-armani { left: 35%; top: 31%; }
-  .annotation-nexus { left: 64%; top: 31%; }
-  .annotation-forex { left: 63%; top: 66%; }
-  .annotation-merdicrat { left: 34%; top: 66%; }
+  .project-01 { left: 3%; top: 5%; width: 31%; }
+  .project-02 { right: 3%; top: 5%; width: 34%; }
+  .project-03 { right: 3%; top: 39%; width: 31%; }
+  .project-04 { right: 8%; bottom: 4%; width: 33%; }
+  .project-05 { left: 3%; bottom: 5%; width: 32%; }
+  .system-core { left: 44%; top: 48%; width: 142px; height: 142px; }
+  .annotation-armani { left: 32%; top: 28%; }
+  .annotation-sales { left: 66%; top: 28%; }
+  .annotation-nexus { left: 68%; top: 51%; }
+  .annotation-forex { left: 57%; top: 76%; }
+  .annotation-merdicrat { left: 31%; top: 76%; }
 }
 
 @media (max-width: 767px) {
@@ -252,7 +256,7 @@ body {
   .project-node { position: relative; inset: auto; width: 100%; min-height: 0; margin-bottom: 22px; padding: 17px; }
   .project-node:last-child { margin-bottom: 0; }
   .system-core { top: 24px; left: 50%; width: 142px; height: 142px; transform: translateX(-50%); border-radius: 28%; }
-  .annotation-armani, .annotation-nexus, .annotation-forex, .annotation-merdicrat { display: none; }
+  .annotation-armani, .annotation-sales, .annotation-nexus, .annotation-forex, .annotation-merdicrat { display: none; }
 }
 
 @media (max-width: 767px) {
@@ -600,7 +604,7 @@ body {
 .capability-row li { font-size: .59375rem; }
 
 /* Selected work: clearer typography + stronger mobile behavior */
-.diagram-canvas { min-height: 700px; }
+.diagram-canvas { min-height: 780px; }
 .project-node { backdrop-filter: blur(10px); }
 .project-node:focus-visible { outline: 2px solid #7dd3fc; outline-offset: 3px; }
 .project-node .project-index { transition: color .2s ease; }
@@ -735,10 +739,11 @@ body {
 /* Desktop/laptop tightening */
 @media (max-width: 1180px) and (min-width: 901px) {
   .project-node { padding: 16px 17px; }
-  .project-01 { width: 35%; }
-  .project-02 { width: 33%; }
-  .project-03 { width: 34%; }
-  .project-04 { width: 32%; }
+  .project-01 { width: 31%; }
+  .project-02 { width: 34%; }
+  .project-03 { width: 31%; }
+  .project-04 { width: 31%; }
+  .project-05 { width: 30%; }
 }
 
 /* Tablet: recompose before content gets cramped */
@@ -766,7 +771,8 @@ body {
   .project-01,
   .project-02,
   .project-03,
-  .project-04 {
+  .project-04,
+  .project-05 {
     position: relative;
     inset: auto;
     width: 100%;
@@ -870,7 +876,8 @@ body {
   .project-01,
   .project-02,
   .project-03,
-  .project-04 { padding: 1rem; }
+  .project-04,
+  .project-05 { padding: 1rem; }
   .project-node::before { width: 1.65rem; }
   .project-node::after { left: -1.85rem; }
   .system-core { width: 108px; height: 108px; }
@@ -988,16 +995,18 @@ body {
 
 /* Project topology: active state works for hover, keyboard, and touch selection. */
 .diagram-canvas[data-active="0"] .connector-armani,
-.diagram-canvas[data-active="1"] .connector-nexus,
-.diagram-canvas[data-active="2"] .connector-forex,
-.diagram-canvas[data-active="3"] .connector-merdicrat {
+.diagram-canvas[data-active="1"] .connector-sales,
+.diagram-canvas[data-active="2"] .connector-nexus,
+.diagram-canvas[data-active="3"] .connector-forex,
+.diagram-canvas[data-active="4"] .connector-merdicrat {
   stroke: rgba(125, 211, 252, .82);
   stroke-width: 2;
 }
 .diagram-canvas[data-active="0"] .connector:not(.connector-armani),
-.diagram-canvas[data-active="1"] .connector:not(.connector-nexus),
-.diagram-canvas[data-active="2"] .connector:not(.connector-forex),
-.diagram-canvas[data-active="3"] .connector:not(.connector-merdicrat) {
+.diagram-canvas[data-active="1"] .connector:not(.connector-sales),
+.diagram-canvas[data-active="2"] .connector:not(.connector-nexus),
+.diagram-canvas[data-active="3"] .connector:not(.connector-forex),
+.diagram-canvas[data-active="4"] .connector:not(.connector-merdicrat) {
   stroke: rgba(91, 140, 255, .14);
 }
 .project-node { overflow: hidden; }
