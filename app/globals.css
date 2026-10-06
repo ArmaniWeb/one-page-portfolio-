@@ -1656,3 +1656,460 @@ body {
 @media (min-width: 901px) {
   .project-preview-button { display: none; }
 }
+
+
+/* ================================================================
+   PROJECT MATRIX — refined PCB-style project topology
+   ================================================================ */
+.project-matrix {
+  position: relative;
+  min-height: 690px;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, .11);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(91,140,255,.07), transparent 23rem),
+    linear-gradient(180deg, #0b111b 0%, #0a0f18 100%);
+  isolation: isolate;
+}
+.project-matrix::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  content: '';
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(148,163,184,.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148,163,184,.022) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: radial-gradient(ellipse at center, black 26%, rgba(0,0,0,.65) 58%, transparent 96%);
+}
+.project-matrix::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  content: '';
+  pointer-events: none;
+  box-shadow: inset 0 0 95px rgba(0,0,0,.36);
+}
+
+.project-matrix-meta {
+  position: absolute;
+  z-index: 8;
+  top: 22px;
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  font-family: var(--font-mono);
+  font-size: .55rem;
+  letter-spacing: .18em;
+  color: #536077;
+}
+.project-matrix-meta-left { left: 26px; }
+.project-matrix-meta-right { right: 26px; }
+.project-matrix-meta i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ff7a45;
+  box-shadow: 0 0 8px rgba(255,122,69,.38);
+}
+
+.pcb-map {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.pcb-trace,
+.pcb-route {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+.pcb-trace {
+  stroke: rgba(154,167,188,.18);
+  stroke-width: 1;
+}
+.pcb-trace.secondary {
+  stroke: rgba(91,140,255,.13);
+}
+.pcb-trace.tertiary {
+  stroke: rgba(154,167,188,.11);
+}
+.pcb-route {
+  stroke: rgba(91,140,255,.28);
+  stroke-width: 1.25;
+  transition: stroke .22s ease, stroke-width .22s ease, filter .22s ease;
+}
+.pcb-via {
+  fill: #0a0f18;
+  stroke: rgba(148,163,184,.42);
+  stroke-width: 1.2;
+  vector-effect: non-scaling-stroke;
+}
+.pcb-route-end {
+  fill: #0a0f18;
+  stroke: #5b8cff;
+  stroke-width: 1.6;
+  vector-effect: non-scaling-stroke;
+  transition: fill .22s ease, stroke .22s ease, filter .22s ease;
+}
+.project-matrix[data-active="0"] .pcb-route-01,
+.project-matrix[data-active="1"] .pcb-route-02,
+.project-matrix[data-active="2"] .pcb-route-03,
+.project-matrix[data-active="3"] .pcb-route-04,
+.project-matrix[data-active="4"] .pcb-route-05 {
+  stroke: #7dd3fc;
+  stroke-width: 2.05;
+  filter: drop-shadow(0 0 4px rgba(125,211,252,.28));
+}
+.project-matrix[data-active="0"] .pcb-end-01,
+.project-matrix[data-active="1"] .pcb-end-02,
+.project-matrix[data-active="2"] .pcb-end-03,
+.project-matrix[data-active="3"] .pcb-end-04,
+.project-matrix[data-active="4"] .pcb-end-05 {
+  fill: #ff7a45;
+  stroke: #ffb090;
+  filter: drop-shadow(0 0 7px rgba(255,122,69,.46));
+}
+
+.project-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+  width: 138px;
+  height: 138px;
+  transform: translate(-50%, -50%);
+}
+.project-core-body {
+  position: absolute;
+  inset: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(125,211,252,.38);
+  border-radius: 13px;
+  background: linear-gradient(145deg, rgba(22,33,51,.98), rgba(13,21,34,.98));
+  box-shadow:
+    inset 0 0 0 5px rgba(91,140,255,.035),
+    0 0 30px rgba(91,140,255,.08);
+}
+.project-core::before,
+.project-core::after {
+  position: absolute;
+  content: '';
+  background: rgba(125,211,252,.24);
+}
+.project-core::before { top: 0; bottom: 0; left: 50%; width: 1px; }
+.project-core::after { top: 50%; left: 0; right: 0; height: 1px; }
+.project-core-pin {
+  position: absolute;
+  z-index: 6;
+  width: 5px;
+  height: 5px;
+  border: 1px solid rgba(125,211,252,.75);
+  border-radius: 50%;
+  background: #0a0f18;
+}
+.project-core-pin-a { top: 8px; left: 30px; }
+.project-core-pin-b { top: 8px; right: 30px; }
+.project-core-pin-c { right: 8px; top: 30px; }
+.project-core-pin-d { right: 8px; bottom: 30px; }
+.project-core-pin-e { bottom: 8px; right: 30px; }
+.project-core-pin-f { bottom: 8px; left: 30px; }
+.project-core-pin-g { left: 8px; bottom: 30px; }
+.project-core-pin-h { left: 8px; top: 30px; }
+.project-core-kicker {
+  font-family: var(--font-mono);
+  font-size: .5rem;
+  letter-spacing: .2em;
+  color: #70809a;
+}
+.project-core-title {
+  margin-top: .3rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -.03em;
+  color: #f4f7fb;
+}
+.project-core-subtitle {
+  margin-top: .3rem;
+  max-width: 92px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: .48rem;
+  line-height: 1.45;
+  letter-spacing: .08em;
+  color: #7dd3fc;
+}
+
+.project-endpoint {
+  position: absolute;
+  z-index: 7;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  width: 236px;
+  min-height: 62px;
+  align-items: center;
+  gap: .8rem;
+  border: 0;
+  border-top: 1px solid rgba(148,163,184,.16);
+  border-bottom: 1px solid rgba(148,163,184,.08);
+  background: linear-gradient(90deg, rgba(15,23,36,.62), rgba(15,23,36,.2));
+  padding: .7rem .8rem;
+  color: #f4f7fb;
+  text-align: left;
+  backdrop-filter: blur(7px);
+  transition: border-color .2s ease, background .2s ease, transform .2s ease;
+}
+.project-endpoint:hover,
+.project-endpoint:focus-visible,
+.project-endpoint.is-active {
+  transform: translateY(-1px);
+  border-top-color: rgba(125,211,252,.58);
+  border-bottom-color: rgba(125,211,252,.2);
+  background: linear-gradient(90deg, rgba(20,31,49,.9), rgba(15,23,36,.42));
+  outline: none;
+}
+.project-endpoint-number {
+  font-family: var(--font-mono);
+  font-size: .58rem;
+  letter-spacing: .16em;
+  color: #ff7a45;
+}
+.project-endpoint-copy {
+  min-width: 0;
+}
+.project-endpoint-copy strong {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: .88rem;
+  font-weight: 540;
+  letter-spacing: -.02em;
+  white-space: nowrap;
+}
+.project-endpoint-copy span {
+  display: block;
+  margin-top: .2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: var(--font-mono);
+  font-size: .48rem;
+  letter-spacing: .12em;
+  color: #637087;
+  white-space: nowrap;
+}
+.project-endpoint-state {
+  display: inline-flex;
+  align-items: center;
+  gap: .38rem;
+  font-family: var(--font-mono);
+  font-size: .48rem;
+  letter-spacing: .1em;
+  color: #70809a;
+}
+.project-endpoint-state i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ff7a45;
+}
+.project-endpoint-state.is-private i { background: #586579; }
+
+.project-endpoint-01 { top: 116px; left: 30px; }
+.project-endpoint-02 { top: 116px; right: 30px; }
+.project-endpoint-03 { top: 310px; right: 24px; }
+.project-endpoint-04 { right: 72px; bottom: 54px; }
+.project-endpoint-05 { left: 30px; bottom: 54px; }
+
+.project-inspector {
+  margin-top: 1rem;
+  border-top: 1px solid rgba(148,163,184,.13);
+  border-bottom: 1px solid rgba(148,163,184,.09);
+  padding: clamp(1.4rem, 3vw, 2.2rem) 0;
+}
+.project-inspector-head {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  gap: 1.5rem;
+  align-items: start;
+}
+.project-inspector-eyebrow {
+  font-family: var(--font-mono);
+  font-size: .56rem;
+  letter-spacing: .15em;
+  color: #68768c;
+}
+.project-inspector h3 {
+  margin-top: .45rem;
+  font-size: clamp(1.45rem, 3vw, 2.2rem);
+  font-weight: 560;
+  letter-spacing: -.045em;
+  color: #f4f7fb;
+}
+.project-inspector-status {
+  display: inline-flex;
+  min-height: 2rem;
+  align-items: center;
+  gap: .45rem;
+  border: 1px solid rgba(148,163,184,.13);
+  border-radius: 999px;
+  padding: .4rem .7rem;
+  font-family: var(--font-mono);
+  font-size: .52rem;
+  letter-spacing: .11em;
+  color: #8390a4;
+}
+.project-inspector-status i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ff7a45;
+}
+.project-inspector-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  margin-top: 1.45rem;
+}
+.project-inspector-copy {
+  max-width: 50rem;
+  color: #a9b4c7;
+  line-height: 1.78;
+}
+.project-inspector-side { min-width: 0; }
+.project-inspector-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.project-inspector-stack li {
+  border: 1px solid rgba(91,140,255,.18);
+  border-radius: 6px;
+  padding: .34rem .55rem;
+  font-family: var(--font-mono);
+  font-size: .58rem;
+  color: #9dafd4;
+  background: rgba(91,140,255,.025);
+}
+.project-inspector-link {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: .45rem;
+  margin-top: .9rem;
+  color: #7dd3fc;
+  font-size: .78rem;
+}
+.project-inspector-private {
+  margin-top: .8rem;
+  font-size: .73rem;
+  line-height: 1.65;
+  color: #6f7c91;
+}
+.project-preview-refined { margin-top: 1rem; }
+
+@media (max-width: 1099px) {
+  .project-matrix { min-height: 760px; }
+  .project-endpoint { width: 205px; }
+  .project-endpoint-01 { left: 20px; }
+  .project-endpoint-02 { right: 20px; }
+  .project-endpoint-03 { right: 16px; }
+  .project-endpoint-04 { right: 42px; }
+  .project-endpoint-05 { left: 20px; }
+  .project-core { width: 126px; height: 126px; }
+}
+
+@media (max-width: 767px) {
+  .project-matrix {
+    min-height: 0;
+    overflow: visible;
+    border-radius: 22px;
+    padding: 116px 14px 18px 46px;
+  }
+  .project-matrix::before { opacity: .45; }
+  .pcb-map { display: none; }
+  .project-matrix::after { display: none; }
+  .project-core {
+    top: 18px;
+    left: 50%;
+    width: 112px;
+    height: 82px;
+    transform: translateX(-50%);
+  }
+  .project-core-body { inset: 7px; }
+  .project-core::before,
+  .project-core::after,
+  .project-core-pin { display: none; }
+  .project-core-title { font-size: 1rem; }
+  .project-core-subtitle { font-size: .44rem; }
+  .project-matrix-meta { display: none; }
+  .project-endpoint {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    min-height: 60px;
+    margin-bottom: 10px;
+    background: rgba(15,23,36,.58);
+  }
+  .project-endpoint:last-child { margin-bottom: 0; }
+  .project-endpoint::before {
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    width: 25px;
+    height: 1px;
+    content: '';
+    background: rgba(91,140,255,.3);
+  }
+  .project-endpoint::after {
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    width: 6px;
+    height: 6px;
+    transform: translateY(-50%);
+    content: '';
+    border: 1px solid #5b8cff;
+    border-radius: 50%;
+    background: #0a0f18;
+  }
+  .project-endpoint-list {
+    position: relative;
+    display: grid;
+  }
+  .project-endpoint-list::before {
+    position: absolute;
+    top: -8px;
+    bottom: 28px;
+    left: -29px;
+    width: 1px;
+    content: '';
+    background: linear-gradient(180deg, rgba(91,140,255,.48), rgba(91,140,255,.14));
+  }
+  .project-inspector-head { grid-template-columns: 1fr; gap: 1rem; }
+  .project-inspector-grid { grid-template-columns: 1fr; gap: 1.35rem; }
+}
+
+@media (max-width: 420px) {
+  .project-matrix { padding-left: 40px; padding-right: 10px; }
+  .project-endpoint {
+    grid-template-columns: auto minmax(0,1fr);
+    gap: .65rem;
+  }
+  .project-endpoint-state { display: none; }
+  .project-endpoint-copy strong { font-size: .82rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pcb-route,
+  .pcb-route-end,
+  .project-endpoint { transition: none; }
+}
