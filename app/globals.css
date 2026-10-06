@@ -3309,3 +3309,202 @@ body {
     gap: .35rem;
   }
 }
+
+
+/* ================================================================
+   MOBILE QC PASS — authoritative narrow-screen refinements
+   ================================================================ */
+@media (max-width: 767px) {
+  /* Hero: reduce vertical weight while preserving the chromatic identity. */
+  .hero-content {
+    min-height: 0;
+    justify-content: flex-start;
+    padding-top: 6.25rem !important;
+    padding-bottom: 4.75rem !important;
+  }
+  .hero-layout { gap: 1.65rem; }
+  .hero-entry-3 {
+    margin-top: 1.15rem !important;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+  .hero-entry-4 { margin-top: 1.6rem !important; }
+  .hero-entry-5 { margin-top: .7rem !important; }
+  .hero-link { min-height: 44px; }
+
+  .hero-spectrum { min-height: 0; }
+  .hero-spectrum-frame {
+    min-height: 0;
+    border-radius: 18px;
+    padding: .9rem;
+  }
+  .hero-spectrum-core {
+    margin-top: 1.45rem;
+    max-width: none;
+  }
+  .hero-spectrum-core > span,
+  .hero-spectrum-topline {
+    font-size: .625rem;
+    letter-spacing: .13em;
+  }
+  .hero-spectrum-core strong {
+    margin-top: .55rem;
+    font-size: clamp(1.65rem, 8.2vw, 2.25rem);
+    line-height: 1;
+  }
+  .hero-spectrum-core p {
+    max-width: 28rem;
+    margin-top: .65rem;
+    font-size: .78rem;
+    line-height: 1.55;
+  }
+  .hero-spectrum-bands {
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: .45rem;
+    margin-top: 1rem;
+  }
+  .hero-spectrum-band {
+    grid-template-columns: 1.3rem minmax(0,1fr);
+    min-height: 42px;
+    gap: .55rem;
+    padding: .5rem .55rem;
+  }
+  .hero-spectrum-band i { display: none; }
+  .hero-spectrum-band span { font-size: .6rem; }
+  .hero-spectrum-band strong {
+    font-size: .62rem;
+    letter-spacing: .09em;
+  }
+  .hero-spectrum-footer {
+    margin-top: .75rem;
+    padding-top: .65rem;
+    font-size: .56rem;
+  }
+
+  /* Keep mobile motion selective and cheaper to render. */
+  .hero-field-violet,
+  .hero-field-ember,
+  .hero-microgrid,
+  .hero-scan-band,
+  .hero-contours-left,
+  .hero-pulse-2,
+  .hero-pulse-3,
+  .hero-pulse-4 {
+    display: none;
+  }
+  .hero-field {
+    filter: blur(62px);
+    opacity: .75;
+  }
+  .hero-network { opacity: .55; }
+
+  /* Functional labels should remain readable on a phone. */
+  .capability-row li,
+  .project-endpoint-copy span,
+  .project-core-kicker,
+  .project-core-subtitle,
+  .project-inspector-eyebrow,
+  .project-inspector-status,
+  .project-case-study-heading > span,
+  .project-case-label,
+  .project-architecture-step strong,
+  .project-architecture-step span,
+  .project-evidence li {
+    font-size: max(.625rem, 10px);
+  }
+
+  /* Capabilities are informational, not faux-controls. */
+  .capability-row,
+  .capability-row:hover,
+  .capability-row.is-active {
+    padding-left: 0;
+  }
+  .capability-row-main h3 { color: #f4f7fb; }
+
+  /* Projects: one stable touch-first spine. */
+  .project-matrix {
+    padding-top: 108px;
+    padding-bottom: 16px;
+  }
+  .project-core {
+    top: 15px;
+    height: 78px;
+  }
+  .project-endpoint {
+    min-height: 64px;
+    margin-bottom: 9px;
+    padding: .72rem .75rem;
+  }
+  .project-endpoint-copy strong {
+    font-size: .9rem;
+    white-space: normal;
+    line-height: 1.25;
+  }
+  .project-endpoint-copy span {
+    margin-top: .24rem;
+    white-space: normal;
+    line-height: 1.35;
+  }
+  .project-explorer .project-inspector {
+    border-radius: 18px;
+    padding: 1rem;
+  }
+  .project-explorer .project-inspector-copy {
+    font-size: .875rem;
+    line-height: 1.68;
+  }
+  .project-thumb-link {
+    min-height: 76px;
+  }
+
+  /* Case studies stay readable without feeling like dense documentation. */
+  .project-case-study-panel {
+    border-radius: 18px;
+    padding: 1rem;
+  }
+  .project-case-study-grid p,
+  .project-outcome p {
+    font-size: .82rem;
+    line-height: 1.62;
+  }
+  .project-architecture-step span,
+  .project-evidence li {
+    font-size: .72rem;
+  }
+
+  /* Consistent touch target floor in lower sections. */
+  .experience-resume-link,
+  .contact-links a {
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 430px) {
+  .hero-entry-5 {
+    grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+    gap: .35rem .5rem !important;
+  }
+  .hero-entry-5 a {
+    justify-content: flex-start;
+    font-size: .8rem;
+  }
+  .hero-entry-5 a:last-child {
+    grid-column: 1 / -1;
+  }
+  .hero-spectrum-core p {
+    font-size: .75rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .site-container { padding-inline: 1rem; }
+  .hero-spectrum-bands { grid-template-columns: 1fr; }
+  .hero-spectrum-footer {
+    flex-direction: column;
+    gap: .25rem;
+  }
+  .project-matrix {
+    padding-left: 38px;
+    padding-right: 8px;
+  }
+}
