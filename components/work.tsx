@@ -12,20 +12,28 @@ const projectMeta = {
     annotation: 'CLIENT SYSTEMS',
     domain: 'armaniwebdesign.com',
   },
-  'Nexus Health': {
+  'AI Sales Operating System': {
     index: '02',
+    category: 'AI SALES OPERATIONS SYSTEM',
+    annotation: 'AGENT ORCHESTRATION',
+    domain: 'PRIVATE SYSTEM',
+    privateDescription: 'The portfolio shows the system at a high level while keeping its internal operating logic, prompts, and deployment details private.',
+  },
+  'Nexus Health': {
+    index: '03',
     category: 'HEALTHCARE WEB PLATFORM',
     annotation: 'HEALTHCARE',
     domain: 'PRIVATE PROJECT',
+    privateDescription: 'This client project is represented in the portfolio, but the live deployment is intentionally not exposed.',
   },
   'Hooked On Forex': {
-    index: '03',
+    index: '04',
     category: 'PUBLIC WEB PROJECT',
     annotation: 'DIGITAL PRODUCT',
     domain: 'hookedonforex.com',
   },
   Merdicrat: {
-    index: '04',
+    index: '05',
     category: 'VOCABULARY LEARNING EXPERIENCE',
     annotation: 'WEB DELIVERY',
     domain: 'merdicrat.com',
@@ -143,23 +151,25 @@ function SystemCore({ activeIndex }: { activeIndex: number | null }) {
 
 function Connectors() {
   return (
-    <svg className="connectors" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
-      <path className="connector connector-armani" d="M440 325 C370 280 300 210 190 140" />
-      <path className="connector connector-nexus" d="M570 305 C650 250 700 180 755 125" />
-      <path className="connector connector-forex" d="M570 345 C650 375 700 440 760 475" />
-      <path className="connector connector-merdicrat" d="M440 360 C355 400 290 465 190 500" />
-      <circle className="anchor" cx="440" cy="325" r="5" />
-      <circle className="anchor" cx="190" cy="140" r="5" />
-      <circle className="anchor" cx="570" cy="305" r="5" />
-      <circle className="anchor" cx="755" cy="125" r="5" />
-      <circle className="anchor" cx="570" cy="345" r="5" />
-      <circle className="anchor" cx="760" cy="475" r="5" />
-      <circle className="anchor" cx="440" cy="360" r="5" />
-      <circle className="anchor" cx="190" cy="500" r="5" />
+    <svg className="connectors" viewBox="0 0 1000 760" preserveAspectRatio="none" aria-hidden="true">
+      <path className="connector connector-armani" d="M430 350 C355 285 285 205 170 135" />
+      <path className="connector connector-sales" d="M545 330 C635 255 720 190 835 135" />
+      <path className="connector connector-nexus" d="M565 375 C675 370 745 360 855 355" />
+      <path className="connector connector-forex" d="M520 430 C610 510 645 580 640 650" />
+      <path className="connector connector-merdicrat" d="M420 425 C345 500 275 565 165 620" />
+      <circle className="anchor" cx="430" cy="350" r="5" />
+      <circle className="anchor" cx="170" cy="135" r="5" />
+      <circle className="anchor" cx="545" cy="330" r="5" />
+      <circle className="anchor" cx="835" cy="135" r="5" />
+      <circle className="anchor" cx="565" cy="375" r="5" />
+      <circle className="anchor" cx="855" cy="355" r="5" />
+      <circle className="anchor" cx="520" cy="430" r="5" />
+      <circle className="anchor" cx="640" cy="650" r="5" />
+      <circle className="anchor" cx="420" cy="425" r="5" />
+      <circle className="anchor" cx="165" cy="620" r="5" />
     </svg>
   )
 }
-
 function ProjectPreview({ index, id }: { index: number; id?: string }) {
   const project = projects[index]
   const meta = projectMeta[project.name as keyof typeof projectMeta]
@@ -203,8 +213,8 @@ function ProjectPreview({ index, id }: { index: number; id?: string }) {
           <div className="work-preview-private-icon"><LockKeyhole className="size-5" aria-hidden="true" /></div>
           <div>
             <span>PRIVATE / PROTECTED</span>
-            <strong>Nexus Health</strong>
-            <p>This client project is represented in the portfolio, but the live deployment is intentionally not exposed.</p>
+            <strong>{project.name}</strong>
+            <p>{'privateDescription' in meta ? meta.privateDescription : 'This project is represented at a high level while its private deployment and internal details remain intentionally unavailable.'}</p>
           </div>
         </div>
       )}
@@ -240,6 +250,7 @@ export function Work() {
         <div className="corner-mark corner-bottom" aria-hidden="true" />
         <Connectors />
         <div className="diagram-annotation annotation-armani">CLIENT SYSTEMS</div>
+        <div className="diagram-annotation annotation-sales">AGENT ORCHESTRATION</div>
         <div className="diagram-annotation annotation-nexus">HEALTHCARE</div>
         <div className="diagram-annotation annotation-forex">DIGITAL PRODUCT</div>
         <div className="diagram-annotation annotation-merdicrat">WEB DELIVERY</div>
