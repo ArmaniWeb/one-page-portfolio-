@@ -83,7 +83,7 @@ export function Hero() {
         <div className="hero-entry hero-entry-4 mt-9 flex flex-wrap items-center gap-3">
           <a
             href="#work"
-            className="hero-primary-cta inline-flex items-center gap-1.5 rounded-md px-4 py-2.5 text-sm font-medium text-signal-foreground"
+            className="hero-primary-cta inline-flex min-h-11 items-center gap-1.5 rounded-md px-4 py-2.5 text-sm font-medium text-signal-foreground"
           >
             View Projects
             <ArrowUpRight className="size-4" />
@@ -91,7 +91,7 @@ export function Hero() {
           <a
             href={`mailto:${profile.email}`}
             aria-label="Email Gabriel Patel"
-            className="hero-secondary-cta inline-flex items-center gap-1.5 rounded-md border border-border px-4 py-2.5 text-sm font-medium text-foreground"
+            className="hero-secondary-cta inline-flex min-h-11 items-center gap-1.5 rounded-md border border-border px-4 py-2.5 text-sm font-medium text-foreground"
           >
             <Mail className="size-4" />
             Contact me
@@ -101,7 +101,7 @@ export function Hero() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="View Gabriel Patel's resume"
-            className="hero-secondary-cta inline-flex items-center gap-1.5 rounded-md border border-border px-4 py-2.5 text-sm font-medium text-foreground"
+            className="hero-secondary-cta inline-flex min-h-11 items-center gap-1.5 rounded-md border border-border px-4 py-2.5 text-sm font-medium text-foreground"
           >
             <FileText className="size-4" />
             Resume
@@ -114,7 +114,7 @@ export function Hero() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="View Gabriel Patel's GitHub profile"
-            className="inline-flex min-h-8 items-center gap-2 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal"
+            className="hero-link inline-flex min-h-11 items-center gap-2 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal"
           >
             <GithubIcon className="size-4" />
             GitHub
@@ -125,7 +125,7 @@ export function Hero() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="View Gabriel Patel on LinkedIn"
-            className="inline-flex min-h-8 items-center gap-2 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal"
+            className="hero-link inline-flex min-h-11 items-center gap-2 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal"
           >
             <LinkedinIcon className="size-4" />
             LinkedIn
@@ -134,7 +134,7 @@ export function Hero() {
           <a
             href={`mailto:${profile.email}`}
             aria-label="Email Gabriel Patel"
-            className="inline-flex min-h-8 items-center gap-2 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal"
+            className="hero-link inline-flex min-h-11 items-center gap-2 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal"
           >
             <Mail className="size-4" />
             Email
