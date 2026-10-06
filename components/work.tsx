@@ -44,8 +44,8 @@ const projectMeta = {
 
 function CircuitNetwork() {
   return (
-    <svg className="circuit-network" viewBox="0 0 1200 720" preserveAspectRatio="none" aria-hidden="true">
-      <g className="circuit-decorative-traces">
+    <svg className="pcb-map" viewBox="0 0 1200 720" preserveAspectRatio="none" aria-hidden="true">
+      <g className="pcb-traces">
         <path d="M560 306 H510 V258 H454 V214 H392 V174 H324" />
         <path d="M548 322 H486 V294 H430 V250 H366 V220 H294" />
         <path d="M540 340 H470 V328 H404 V300 H338 V282 H250" />
@@ -71,22 +71,22 @@ function CircuitNetwork() {
         <path d="M632 410 V456 H662 V506 H692 V556 H724 V616" />
       </g>
 
-      <g className="circuit-primary-routes">
-        <path className="circuit-route route-01" d="M548 324 H488 V284 H422 V230 H360 V182 H290 V134" />
-        <path className="circuit-route route-02" d="M652 324 H716 V282 H782 V226 H846 V176 H914 V126" />
-        <path className="circuit-route route-03" d="M660 350 H752 V350 H836 V350 H918 V350 H1010" />
-        <path className="circuit-route route-04" d="M644 396 H700 V452 H756 V516 H810 V574 H858 V626" />
-        <path className="circuit-route route-05" d="M556 396 H500 V452 H444 V516 H388 V566 H316 V620" />
+      <g className="pcb-routes">
+        <path className="pcb-route pcb-route-01" d="M548 324 H488 V284 H422 V230 H360 V182 H290 V134" />
+        <path className="pcb-route pcb-route-02" d="M652 324 H716 V282 H782 V226 H846 V176 H914 V126" />
+        <path className="pcb-route pcb-route-03" d="M660 350 H752 V350 H836 V350 H918 V350 H1010" />
+        <path className="pcb-route pcb-route-04" d="M644 396 H700 V452 H756 V516 H810 V574 H858 V626" />
+        <path className="pcb-route pcb-route-05" d="M556 396 H500 V452 H444 V516 H388 V566 H316 V620" />
       </g>
 
-      <g className="circuit-contact-points">
+      <g className="pcb-route-ends">
         {[290, 914, 1010, 858, 316].map((x, i) => {
           const ys = [134, 126, 350, 626, 620]
-          return <circle key={x} cx={x} cy={ys[i]} r="6" className={`circuit-contact contact-${String(i + 1).padStart(2, '0')}`} />
+          return <circle key={x} cx={x} cy={ys[i]} r="6" className={`pcb-route-end contact-${String(i + 1).padStart(2, '0')}`} />
         })}
       </g>
 
-      <g className="circuit-micro-nodes">
+      <g className="pcb-vias">
         <circle cx="324" cy="174" r="3" />
         <circle cx="250" cy="282" r="3" />
         <circle cx="238" cy="420" r="3" />
@@ -113,14 +113,20 @@ function CircuitCore({ activeIndex }: { activeIndex: number }) {
   const meta = projectMeta[project.name as keyof typeof projectMeta]
 
   return (
-    <div className="circuit-core" aria-live="polite">
-      <span className="circuit-core-pin circuit-core-pin-a" aria-hidden="true" />
-      <span className="circuit-core-pin circuit-core-pin-b" aria-hidden="true" />
-      <span className="circuit-core-pin circuit-core-pin-c" aria-hidden="true" />
-      <span className="circuit-core-pin circuit-core-pin-d" aria-hidden="true" />
-      <span className="circuit-core-kicker">SYSTEM / {meta.index}</span>
-      <strong>BUILD</strong>
-      <span className="circuit-core-project">{project.name}</span>
+    <div className="project-core" aria-live="polite">
+      <span className="project-core-pin project-core-pin-a" aria-hidden="true" />
+      <span className="project-core-pin project-core-pin-b" aria-hidden="true" />
+      <span className="project-core-pin project-core-pin-c" aria-hidden="true" />
+      <span className="project-core-pin project-core-pin-d" aria-hidden="true" />
+      <span className="project-core-pin project-core-pin-e" aria-hidden="true" />
+      <span className="project-core-pin project-core-pin-f" aria-hidden="true" />
+      <span className="project-core-pin project-core-pin-g" aria-hidden="true" />
+      <span className="project-core-pin project-core-pin-h" aria-hidden="true" />
+      <div className="project-core-body">
+        <span className="project-core-kicker">SYSTEM / {meta.index}</span>
+        <strong className="project-core-title">BUILD</strong>
+        <span className="project-core-subtitle">{project.name}</span>
+      </div>
     </div>
   )
 }
@@ -142,21 +148,21 @@ function CircuitTerminal({
   return (
     <button
       type="button"
-      className={`circuit-terminal circuit-terminal-${meta.index} ${active ? 'is-active' : ''}`}
+      className={`project-endpoint project-endpoint-${meta.index} ${active ? 'is-active' : ''}`}
       onClick={onSelect}
       onMouseEnter={onSelect}
       onFocus={onSelect}
       aria-pressed={active}
     >
-      <span className="circuit-terminal-topline">
-        <span className="circuit-terminal-index">{meta.index}</span>
-        <span className={`circuit-terminal-state ${isPrivate ? 'is-private' : ''}`}>
+      <span className="project-endpoint-topline">
+        <span className="project-endpoint-index">{meta.index}</span>
+        <span className={`project-endpoint-state ${isPrivate ? 'is-private' : ''}`}>
           <i aria-hidden="true" />
           {isPrivate ? 'PRIVATE' : 'LIVE'}
         </span>
       </span>
       <strong>{project.name}</strong>
-      <span className="circuit-terminal-meta">{meta.annotation}</span>
+      <span className="project-endpoint-meta">{meta.annotation}</span>
     </button>
   )
 }
@@ -167,23 +173,23 @@ function ProjectDetails({ index }: { index: number }) {
   const isPrivate = !project.link
 
   return (
-    <article className="circuit-project-details" aria-live="polite">
-      <div className="circuit-project-details-head">
+    <article className="project-inspector" aria-live="polite">
+      <div className="project-inspector-head">
         <div>
-          <span className="circuit-project-eyebrow">{meta.index} / {meta.category}</span>
+          <span className="project-inspector-eyebrow">{meta.index} / {meta.category}</span>
           <h3>{project.name}</h3>
         </div>
-        <span className={`circuit-project-status ${isPrivate ? 'is-private' : ''}`}>
+        <span className={`project-inspector-status ${isPrivate ? 'is-private' : ''}`}>
           {isPrivate ? <LockKeyhole className="size-3.5" aria-hidden="true" /> : <i aria-hidden="true" />}
           {isPrivate ? 'PRIVATE / PROTECTED' : 'LIVE PROJECT'}
         </span>
       </div>
 
-      <div className="circuit-project-details-grid">
-        <p>{project.body}</p>
-        <div className="circuit-project-side">
+      <div className="project-inspector-grid">
+        <p className="project-inspector-copy">{project.body}</p>
+        <div className="project-inspector-side">
           {project.stack.length > 0 ? (
-            <ul className="circuit-project-stack" aria-label={`${project.name} technologies`}>
+            <ul className="project-inspector-stack" aria-label={`${project.name} technologies`}>
               {project.stack.filter((tech) => tech !== 'AI-assisted development').map((tech) => (
                 <li key={tech}>{tech}</li>
               ))}
@@ -193,11 +199,11 @@ function ProjectDetails({ index }: { index: number }) {
           )}
 
           {project.link ? (
-            <a href={project.link} target="_blank" rel="noopener noreferrer" className="circuit-project-link">
+            <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-inspector-link">
               View live site <ArrowUpRight className="size-4" aria-hidden="true" />
             </a>
           ) : (
-            <p className="circuit-project-private-copy">
+            <p className="project-inspector-private">
               {'privateDescription' in meta
                 ? meta.privateDescription
                 : 'This project is intentionally presented without exposing its private deployment.'}
@@ -216,7 +222,7 @@ function LiveProjectPreview({ index }: { index: number }) {
   const meta = projectMeta[project.name as keyof typeof projectMeta]
 
   return (
-    <aside className="work-preview circuit-live-preview" aria-live="polite">
+    <aside className="work-preview project-preview-refined" aria-live="polite">
       <div className="work-preview-rail">
         <div className="work-preview-rail-left">
           <span className="work-preview-status" aria-hidden="true" />
@@ -255,14 +261,14 @@ export function Work() {
     <Section id="work" index="03" kicker="Projects" title="Selected work">
       <p className="work-lede">A connected view of the systems, products, and client work I have built and shipped.</p>
 
-      <div className="circuit-board" data-active={active}>
-        <div className="circuit-board-grid" aria-hidden="true" />
-        <div className="circuit-board-label circuit-board-label-a">PROJECT NETWORK</div>
-        <div className="circuit-board-label circuit-board-label-b">05 ACTIVE NODES</div>
+      <div className="project-matrix" data-active={active}>
+        <div className="project-matrix-grid" aria-hidden="true" />
+        <div className="project-matrix-label project-matrix-label-a">PROJECT NETWORK</div>
+        <div className="project-matrix-label project-matrix-label-b">05 ACTIVE NODES</div>
         <CircuitNetwork />
         <CircuitCore activeIndex={active} />
 
-        <div className="circuit-terminal-list">
+        <div className="project-endpoint-list">
           {projects.map((project, index) => (
             <CircuitTerminal
               key={project.name}
