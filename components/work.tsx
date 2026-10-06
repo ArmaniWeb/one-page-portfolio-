@@ -162,10 +162,16 @@ function ProjectCore({ activeIndex }: { activeIndex: number }) {
 function ProjectEndpoint({
   project,
   active,
+  selected,
+  onPreview,
+  onPreviewEnd,
   onSelect,
 }: {
   project: (typeof projects)[number]
   active: boolean
+  selected: boolean
+  onPreview: () => void
+  onPreviewEnd: () => void
   onSelect: () => void
 }) {
   const meta = projectMeta[project.name as keyof typeof projectMeta]
@@ -174,11 +180,13 @@ function ProjectEndpoint({
   return (
     <button
       type="button"
-      className={`project-endpoint project-endpoint-${meta.index} ${active ? 'is-active' : ''}`}
+      className={`project-endpoint project-endpoint-${meta.index} ${active ? 'is-active' : ''} ${selected ? 'is-selected' : ''}`}
       onClick={onSelect}
-      onMouseEnter={onSelect}
-      onFocus={onSelect}
-      aria-pressed={active}
+      onMouseEnter={onPreview}
+      onMouseLeave={onPreviewEnd}
+      onFocus={onPreview}
+      onBlur={onPreviewEnd}
+      aria-pressed={selected}
       aria-label={`${project.name}, ${isPrivate ? 'private project' : 'live project'}`}
     >
       <span className="project-endpoint-number">{meta.index}</span>
@@ -278,84 +286,103 @@ function ProjectInspector({ index }: { index: number }) {
           ))}
         </ul>
       ) : null}
-
-      {project.name in projectCaseStudies ? (
-        <div className="project-case-study">
-          {(() => {
-            const study = projectCaseStudies[project.name as keyof typeof projectCaseStudies]
-            return (
-              <>
-                <div className="project-case-study-grid">
-                  <section>
-                    <span>01 / CHALLENGE</span>
-                    <p>{study.challenge}</p>
-                  </section>
-                  <section>
-                    <span>02 / BUILD</span>
-                    <p>{study.build}</p>
-                  </section>
-                </div>
-
-                <div className="project-architecture" aria-label={`${project.name} architecture overview`}>
-                  <span className="project-case-label">03 / SYSTEM FLOW</span>
-                  <div className="project-architecture-flow">
-                    {study.architecture.map((item, itemIndex) => (
-                      <div className="project-architecture-step" key={item}>
-                        <strong>{String(itemIndex + 1).padStart(2, '0')}</strong>
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="project-evidence">
-                  <span className="project-case-label">04 / ENGINEERING EVIDENCE</span>
-                  <ul>
-                    {study.evidence.map((item) => <li key={item}>{item}</li>)}
-                  </ul>
-                </div>
-
-                <div className="project-outcome">
-                  <span className="project-case-label">05 / OUTCOME</span>
-                  <p>{study.outcome}</p>
-                </div>
-              </>
-            )
-          })()}
-        </div>
-      ) : null}
     </aside>
   )
 }
 
+function ProjectCaseStudy({ index }: { index: number }) {
+  const project = projects[index]
+  if (!(project.name in projectCaseStudies)) return null
+
+  const study = projectCaseStudies[project.name as keyof typeof projectCaseStudies]
+  const meta = projectMeta[project.name as keyof typeof projectMeta]
+
+  return (
+    <article className="project-case-study-panel" aria-labelledby={`case-study-${meta.index}`}>
+      <div className="project-case-study-heading">
+        <span>{meta.index} / CASE STUDY</span>
+        <h3 id={`case-study-${meta.index}`}>{project.name}</h3>
+        <p>Selected project evidence, system decisions, and outcomes.</p>
+      </div>
+
+      <div className="project-case-study-grid">
+        <section>
+          <span>01 / CHALLENGE</span>
+          <p>{study.challenge}</p>
+        </section>
+        <section>
+          <span>02 / BUILD</span>
+          <p>{study.build}</p>
+        </section>
+      </div>
+
+      <div className="project-architecture" aria-label={`${project.name} architecture overview`}>
+        <span className="project-case-label">03 / SYSTEM FLOW</span>
+        <div className="project-architecture-flow">
+          {study.architecture.map((item, itemIndex) => (
+            <div className="project-architecture-step" key={item}>
+              <strong>{String(itemIndex + 1).padStart(2, '0')}</strong>
+              <span>{item}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="project-case-study-lower">
+        <div className="project-evidence">
+          <span className="project-case-label">04 / ENGINEERING EVIDENCE</span>
+          <ul>
+            {study.evidence.map((item) => <li key={item}>{item}</li>)}
+          </ul>
+        </div>
+
+        <div className="project-outcome">
+          <span className="project-case-label">05 / OUTCOME</span>
+          <p>{study.outcome}</p>
+        </div>
+      </div>
+    </article>
+  )
+}
+
 export function Work() {
-  const [active, setActive] = useState(0)
+  const [selected, setSelected] = useState(0)
+  const [previewed, setPreviewed] = useState<number | null>(null)
+  const displayIndex = previewed ?? selected
 
   return (
     <Section id="work" index="03" kicker="Projects" title="Selected work">
       <p className="work-lede">A connected view of the systems, products, and client work I have built and shipped.</p>
 
       <div className="project-explorer">
-        <div className="project-matrix" data-active={active}>
+        <div className="project-matrix" data-active={displayIndex}>
           <div className="project-matrix-meta project-matrix-meta-left">PROJECT NETWORK</div>
           <div className="project-matrix-meta project-matrix-meta-right"><i aria-hidden="true" /> 05 NODES</div>
           <ProjectMap />
-          <ProjectCore activeIndex={active} />
+          <ProjectCore activeIndex={displayIndex} />
 
           <div className="project-endpoint-list">
             {projects.map((project, index) => (
               <ProjectEndpoint
                 key={project.name}
                 project={project}
-                active={active === index}
-                onSelect={() => setActive(index)}
+                active={displayIndex === index}
+                selected={selected === index}
+                onPreview={() => setPreviewed(index)}
+                onPreviewEnd={() => setPreviewed(null)}
+                onSelect={() => {
+                  setSelected(index)
+                  setPreviewed(null)
+                }}
               />
             ))}
           </div>
         </div>
 
-        <ProjectInspector index={active} />
+        <ProjectInspector index={displayIndex} />
       </div>
+
+      <ProjectCaseStudy index={selected} />
     </Section>
   )
 }
