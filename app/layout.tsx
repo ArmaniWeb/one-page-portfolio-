@@ -40,7 +40,7 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <a href="#main-content" className="skip-link">Skip to content</a>
         {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        <Analytics />
       </body>
     </html>
   )
