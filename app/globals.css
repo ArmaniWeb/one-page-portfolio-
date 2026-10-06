@@ -2869,3 +2869,443 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* ================================================================
+   CHROMATIC SYSTEM — richer palette, texture, hero redesign
+   ================================================================ */
+:root {
+  --violet: #8b7cff;
+  --electric-cyan: #65d8ff;
+  --coral: #ff7a59;
+  --gold: #f4c95d;
+  --magenta: #d96cff;
+  --mint: #64e0b5;
+}
+
+body {
+  background:
+    radial-gradient(circle at 18% 8%, rgba(139,124,255,.07), transparent 24rem),
+    radial-gradient(circle at 82% 16%, rgba(101,216,255,.055), transparent 26rem),
+    #080b12;
+}
+
+.portfolio-section {
+  position: relative;
+  isolation: isolate;
+  background-image:
+    linear-gradient(rgba(255,255,255,.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.012) 1px, transparent 1px),
+    repeating-linear-gradient(135deg, rgba(148,163,184,.010) 0 1px, transparent 1px 9px);
+  background-size: 48px 48px, 48px 48px, auto;
+}
+
+#about {
+  background:
+    radial-gradient(circle at 88% 16%, rgba(139,124,255,.07), transparent 26rem),
+    radial-gradient(circle at 12% 72%, rgba(101,216,255,.035), transparent 24rem),
+    #0b101a;
+}
+#focus {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255,122,89,.045), transparent 26rem),
+    radial-gradient(circle at 86% 72%, rgba(139,124,255,.04), transparent 26rem),
+    #0d1420;
+}
+#work {
+  background:
+    radial-gradient(circle at 76% 18%, rgba(101,216,255,.055), transparent 28rem),
+    radial-gradient(circle at 18% 80%, rgba(217,108,255,.035), transparent 26rem),
+    #0c1320;
+}
+#stack {
+  background:
+    linear-gradient(112deg, rgba(139,124,255,.06), transparent 38%),
+    radial-gradient(circle at 88% 68%, rgba(244,201,93,.035), transparent 26rem),
+    #0a111d;
+}
+#experience {
+  background:
+    radial-gradient(circle at 10% 30%, rgba(100,224,181,.035), transparent 25rem),
+    radial-gradient(circle at 92% 58%, rgba(255,122,89,.04), transparent 28rem),
+    #0d121a;
+}
+#contact {
+  background:
+    radial-gradient(circle at 10% 20%, rgba(101,216,255,.09), transparent 30rem),
+    radial-gradient(circle at 90% 74%, rgba(217,108,255,.06), transparent 26rem),
+    radial-gradient(circle at 58% 110%, rgba(244,201,93,.035), transparent 24rem),
+    #0a1019;
+}
+
+/* Hero shell */
+.hero-section {
+  min-height: min(820px, 96svh);
+  background:
+    radial-gradient(circle at 68% 30%, rgba(139,124,255,.10), transparent 28rem),
+    radial-gradient(circle at 88% 20%, rgba(101,216,255,.08), transparent 24rem),
+    radial-gradient(circle at 28% 88%, rgba(255,122,89,.06), transparent 24rem),
+    #080b12;
+}
+.hero-ambient::before {
+  background:
+    linear-gradient(90deg, rgba(8,11,18,.88) 0%, rgba(8,11,18,.55) 43%, rgba(8,11,18,.16) 76%, transparent 100%);
+}
+.hero-ambient::after {
+  background:
+    radial-gradient(ellipse at 72% 42%, transparent 0 18%, rgba(8,11,18,.15) 62%, rgba(8,11,18,.44) 100%),
+    linear-gradient(180deg, rgba(8,11,18,.14), transparent 38%, rgba(8,11,18,.34));
+}
+.hero-field-sapphire {
+  background: rgba(101,216,255,.12);
+}
+.hero-field-ice {
+  background: rgba(139,124,255,.10);
+}
+.hero-field-violet {
+  background: rgba(217,108,255,.075);
+}
+.hero-field-ember {
+  background: rgba(255,122,89,.065);
+}
+.hero-flow {
+  background:
+    linear-gradient(108deg,
+      transparent 10%,
+      rgba(139,124,255,.075) 36%,
+      rgba(101,216,255,.055) 50%,
+      rgba(255,122,89,.04) 63%,
+      transparent 82%);
+}
+.hero-grid {
+  opacity: .52;
+  background-image:
+    linear-gradient(rgba(101,216,255,.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139,124,255,.026) 1px, transparent 1px);
+}
+.hero-contours {
+  background:
+    repeating-radial-gradient(
+      ellipse at center,
+      transparent 0 17px,
+      rgba(217,108,255,.05) 18px 19px,
+      transparent 20px 34px
+    );
+}
+
+.hero-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(360px, .95fr);
+  gap: clamp(2.5rem, 6vw, 6.5rem);
+  align-items: center;
+}
+.hero-copy {
+  min-width: 0;
+}
+.hero-name {
+  display: block;
+  color: #f7f9fc;
+  text-shadow: 0 0 32px rgba(139,124,255,.09);
+}
+.hero-role {
+  max-width: 46rem;
+  background:
+    linear-gradient(90deg, #f7f9fc 0%, #a9b9ff 30%, #65d8ff 58%, #d96cff 82%, #ff9b7f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero-availability {
+  border-color: rgba(101,216,255,.18) !important;
+  background: linear-gradient(90deg, rgba(101,216,255,.055), rgba(139,124,255,.035)) !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.012);
+}
+.hero-primary-cta {
+  border: 1px solid rgba(255,255,255,.08);
+  background:
+    linear-gradient(135deg, #6f7cff 0%, #5c9eff 42%, #65d8ff 100%);
+  box-shadow:
+    0 12px 28px rgba(73,101,224,.20),
+    inset 0 1px 0 rgba(255,255,255,.18);
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+.hero-primary-cta:hover {
+  transform: translateY(-2px);
+  filter: saturate(1.08);
+  box-shadow:
+    0 16px 34px rgba(73,101,224,.28),
+    inset 0 1px 0 rgba(255,255,255,.2);
+}
+.hero-secondary-cta {
+  background: rgba(13,20,32,.45);
+  backdrop-filter: blur(10px);
+  transition: border-color .2s ease, background .2s ease, transform .2s ease;
+}
+.hero-secondary-cta:hover {
+  transform: translateY(-1px);
+  border-color: rgba(101,216,255,.34);
+  background: rgba(18,28,43,.72);
+}
+
+/* Hero capability panel */
+.hero-spectrum {
+  position: relative;
+  min-height: 470px;
+}
+.hero-spectrum-frame {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  min-height: 460px;
+  border: 1px solid rgba(149,166,201,.18);
+  border-radius: 26px;
+  background:
+    linear-gradient(160deg, rgba(16,23,38,.92), rgba(9,14,24,.88));
+  padding: 1.25rem;
+  box-shadow:
+    0 28px 70px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.035);
+  backdrop-filter: blur(16px);
+}
+.hero-spectrum-frame::before {
+  position: absolute;
+  inset: 0;
+  content: '';
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(to bottom, black, transparent 86%);
+}
+.hero-spectrum-frame::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 82% 14%, rgba(101,216,255,.10), transparent 15rem),
+    radial-gradient(circle at 18% 82%, rgba(217,108,255,.075), transparent 14rem);
+}
+.hero-spectrum-glow {
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+  filter: blur(54px);
+  opacity: .8;
+}
+.hero-spectrum-glow-a {
+  width: 13rem;
+  height: 13rem;
+  top: -2rem;
+  right: -1rem;
+  background: rgba(101,216,255,.20);
+}
+.hero-spectrum-glow-b {
+  width: 12rem;
+  height: 12rem;
+  bottom: -1rem;
+  left: -1rem;
+  background: rgba(217,108,255,.16);
+}
+.hero-spectrum-topline,
+.hero-spectrum-core,
+.hero-spectrum-bands,
+.hero-spectrum-footer {
+  position: relative;
+  z-index: 2;
+}
+.hero-spectrum-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: .58rem;
+  letter-spacing: .15em;
+  color: #6f7c91;
+}
+.hero-spectrum-topline i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #64e0b5;
+  box-shadow: 0 0 12px rgba(100,224,181,.55);
+}
+.hero-spectrum-core {
+  margin-top: 4.4rem;
+  max-width: 22rem;
+}
+.hero-spectrum-core > span {
+  font-family: var(--font-mono);
+  font-size: .58rem;
+  letter-spacing: .16em;
+  color: #7f8ca1;
+}
+.hero-spectrum-core strong {
+  display: block;
+  margin-top: .7rem;
+  font-size: clamp(2rem, 3.8vw, 3.4rem);
+  line-height: .98;
+  letter-spacing: -.055em;
+  color: #f4f7fb;
+}
+.hero-spectrum-core p {
+  max-width: 18rem;
+  margin-top: .95rem;
+  color: #8491a5;
+  font-size: .78rem;
+  line-height: 1.65;
+}
+.hero-spectrum-bands {
+  display: grid;
+  gap: .55rem;
+  margin-top: 2rem;
+}
+.hero-spectrum-band {
+  display: grid;
+  grid-template-columns: 2rem minmax(0,1fr) 3.2rem;
+  align-items: center;
+  min-height: 40px;
+  gap: .8rem;
+  border: 1px solid rgba(148,163,184,.09);
+  border-radius: 9px;
+  padding: .55rem .65rem;
+  background: rgba(255,255,255,.018);
+}
+.hero-spectrum-band span {
+  font-family: var(--font-mono);
+  font-size: .55rem;
+  color: #6f7c91;
+}
+.hero-spectrum-band strong {
+  font-family: var(--font-mono);
+  font-size: .61rem;
+  letter-spacing: .12em;
+  color: #dfe6ef;
+}
+.hero-spectrum-band i {
+  height: 2px;
+  border-radius: 999px;
+}
+.hero-spectrum-band-violet i {
+  background: linear-gradient(90deg, rgba(139,124,255,.18), #8b7cff);
+  box-shadow: 0 0 9px rgba(139,124,255,.36);
+}
+.hero-spectrum-band-cyan i {
+  background: linear-gradient(90deg, rgba(101,216,255,.18), #65d8ff);
+  box-shadow: 0 0 9px rgba(101,216,255,.32);
+}
+.hero-spectrum-band-coral i {
+  background: linear-gradient(90deg, rgba(255,122,89,.18), #ff7a59);
+  box-shadow: 0 0 9px rgba(255,122,89,.30);
+}
+.hero-spectrum-band-gold i {
+  background: linear-gradient(90deg, rgba(244,201,93,.18), #f4c95d);
+  box-shadow: 0 0 9px rgba(244,201,93,.28);
+}
+.hero-spectrum-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.2rem;
+  border-top: 1px solid rgba(148,163,184,.08);
+  padding-top: .8rem;
+  font-family: var(--font-mono);
+  font-size: .5rem;
+  letter-spacing: .13em;
+  color: #59667a;
+}
+
+.hero-entry-6 {
+  animation-delay: 280ms;
+}
+
+/* Carry richer accent color through the page without turning it into rainbow UI. */
+.section-index {
+  color: #ff8c6d;
+}
+.section-kicker-rule {
+  background: linear-gradient(90deg, rgba(101,216,255,.7), rgba(139,124,255,.28));
+}
+.section-title {
+  text-shadow: 0 0 36px rgba(139,124,255,.035);
+}
+.learning-panel {
+  background:
+    radial-gradient(circle at 92% 12%, rgba(217,108,255,.06), transparent 15rem),
+    rgba(18,26,41,.55);
+}
+.project-matrix {
+  background:
+    radial-gradient(circle at 50% 46%, rgba(101,216,255,.065), transparent 19rem),
+    radial-gradient(circle at 75% 30%, rgba(139,124,255,.045), transparent 18rem),
+    linear-gradient(180deg, #0b111b 0%, #0a0f18 100%);
+}
+.project-explorer .project-inspector {
+  background:
+    radial-gradient(circle at 86% 10%, rgba(139,124,255,.075), transparent 14rem),
+    radial-gradient(circle at 18% 88%, rgba(255,122,89,.035), transparent 13rem),
+    linear-gradient(180deg, rgba(13,20,32,.98), rgba(10,15,24,.98));
+}
+.project-endpoint.is-selected {
+  box-shadow: inset 3px 0 0 #ff7a59;
+}
+.project-endpoint.is-active:not(.is-selected) {
+  box-shadow: inset 2px 0 0 rgba(101,216,255,.7);
+}
+
+@media (max-width: 1020px) {
+  .hero-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .hero-spectrum {
+    width: min(100%, 680px);
+    min-height: 0;
+  }
+  .hero-spectrum-frame {
+    min-height: 0;
+  }
+  .hero-spectrum-core {
+    margin-top: 2.8rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-layout {
+    gap: 2rem;
+  }
+  .hero-role {
+    margin-top: .8rem;
+    font-size: clamp(1.35rem, 7vw, 2rem);
+    line-height: 1.06;
+  }
+  .hero-spectrum {
+    width: 100%;
+  }
+  .hero-spectrum-frame {
+    border-radius: 20px;
+    padding: 1rem;
+  }
+  .hero-spectrum-core {
+    margin-top: 2.2rem;
+  }
+  .hero-spectrum-core strong {
+    font-size: clamp(1.8rem, 9vw, 2.5rem);
+  }
+  .hero-spectrum-band {
+    grid-template-columns: 1.65rem minmax(0,1fr) 2.6rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-spectrum-band {
+    grid-template-columns: 1.4rem minmax(0,1fr);
+  }
+  .hero-spectrum-band i {
+    display: none;
+  }
+  .hero-spectrum-footer {
+    flex-direction: column;
+    gap: .35rem;
+  }
+}
