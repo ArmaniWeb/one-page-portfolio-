@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { ArrowUpRight, Eye, LockKeyhole, X } from 'lucide-react'
+import { useState } from 'react'
+import { ArrowUpRight, LockKeyhole } from 'lucide-react'
 import { Section } from '@/components/section'
 import { projects } from '@/lib/content'
 
@@ -17,14 +17,16 @@ const projectMeta = {
     category: 'AI SALES OPERATIONS SYSTEM',
     annotation: 'AGENT ORCHESTRATION',
     domain: 'PRIVATE SYSTEM',
-    privateDescription: 'The portfolio shows the system at a high level while keeping its internal operating logic, prompts, and deployment details private.',
+    privateDescription:
+      'The portfolio shows the system at a high level while keeping its internal operating logic, prompts, and deployment details private.',
   },
   'Nexus Health': {
     index: '03',
     category: 'HEALTHCARE WEB PLATFORM',
     annotation: 'HEALTHCARE',
     domain: 'PRIVATE PROJECT',
-    privateDescription: 'This client project is represented in the portfolio, but the live deployment is intentionally not exposed.',
+    privateDescription:
+      'This client project is represented in the portfolio, but the live deployment is intentionally not exposed.',
   },
   'Hooked On Forex': {
     index: '04',
@@ -40,244 +42,241 @@ const projectMeta = {
   },
 } as const
 
-function TechnologyTag({ children }: { children: string }) {
-  return <span className="technology-tag">{children}</span>
+function CircuitNetwork() {
+  return (
+    <svg className="circuit-network" viewBox="0 0 1200 720" preserveAspectRatio="none" aria-hidden="true">
+      <g className="circuit-decorative-traces">
+        <path d="M560 306 H510 V258 H454 V214 H392 V174 H324" />
+        <path d="M548 322 H486 V294 H430 V250 H366 V220 H294" />
+        <path d="M540 340 H470 V328 H404 V300 H338 V282 H250" />
+        <path d="M540 360 H464 V372 H394 V400 H326 V420 H238" />
+        <path d="M548 380 H480 V416 H414 V464 H354 V510 H286" />
+        <path d="M560 396 H510 V450 H462 V504 H404 V556 H326" />
+
+        <path d="M640 306 H690 V256 H744 V216 H808 V176 H876" />
+        <path d="M652 322 H714 V292 H772 V252 H836 V220 H908" />
+        <path d="M660 340 H730 V326 H796 V300 H862 V282 H952" />
+        <path d="M660 360 H736 V372 H806 V402 H874 V420 H962" />
+        <path d="M652 380 H720 V416 H786 V464 H846 V510 H914" />
+        <path d="M640 396 H690 V450 H738 V504 H796 V556 H874" />
+
+        <path d="M578 290 V244 H548 V194 H520 V144 H486 V94" />
+        <path d="M596 290 V232 H584 V172 H572 V114 H550 V64" />
+        <path d="M614 290 V232 H626 V172 H640 V114 H662 V64" />
+        <path d="M632 290 V244 H662 V194 H692 V144 H724 V94" />
+
+        <path d="M578 410 V456 H548 V506 H520 V556 H486 V616" />
+        <path d="M596 410 V468 H584 V528 H572 V586 H550 V656" />
+        <path d="M614 410 V468 H626 V528 H640 V586 H662 V656" />
+        <path d="M632 410 V456 H662 V506 H692 V556 H724 V616" />
+      </g>
+
+      <g className="circuit-primary-routes">
+        <path className="circuit-route route-01" d="M548 324 H488 V284 H422 V230 H360 V182 H290 V134" />
+        <path className="circuit-route route-02" d="M652 324 H716 V282 H782 V226 H846 V176 H914 V126" />
+        <path className="circuit-route route-03" d="M660 350 H752 V350 H836 V350 H918 V350 H1010" />
+        <path className="circuit-route route-04" d="M644 396 H700 V452 H756 V516 H810 V574 H858 V626" />
+        <path className="circuit-route route-05" d="M556 396 H500 V452 H444 V516 H388 V566 H316 V620" />
+      </g>
+
+      <g className="circuit-contact-points">
+        {[290, 914, 1010, 858, 316].map((x, i) => {
+          const ys = [134, 126, 350, 626, 620]
+          return <circle key={x} cx={x} cy={ys[i]} r="6" className={`circuit-contact contact-${String(i + 1).padStart(2, '0')}`} />
+        })}
+      </g>
+
+      <g className="circuit-micro-nodes">
+        <circle cx="324" cy="174" r="3" />
+        <circle cx="250" cy="282" r="3" />
+        <circle cx="238" cy="420" r="3" />
+        <circle cx="286" cy="510" r="3" />
+        <circle cx="876" cy="176" r="3" />
+        <circle cx="952" cy="282" r="3" />
+        <circle cx="962" cy="420" r="3" />
+        <circle cx="914" cy="510" r="3" />
+        <circle cx="486" cy="94" r="3" />
+        <circle cx="550" cy="64" r="3" />
+        <circle cx="662" cy="64" r="3" />
+        <circle cx="724" cy="94" r="3" />
+        <circle cx="486" cy="616" r="3" />
+        <circle cx="550" cy="656" r="3" />
+        <circle cx="662" cy="656" r="3" />
+        <circle cx="724" cy="616" r="3" />
+      </g>
+    </svg>
+  )
 }
 
-function ProjectNode({
+function CircuitCore({ activeIndex }: { activeIndex: number }) {
+  const project = projects[activeIndex]
+  const meta = projectMeta[project.name as keyof typeof projectMeta]
+
+  return (
+    <div className="circuit-core" aria-live="polite">
+      <span className="circuit-core-pin circuit-core-pin-a" aria-hidden="true" />
+      <span className="circuit-core-pin circuit-core-pin-b" aria-hidden="true" />
+      <span className="circuit-core-pin circuit-core-pin-c" aria-hidden="true" />
+      <span className="circuit-core-pin circuit-core-pin-d" aria-hidden="true" />
+      <span className="circuit-core-kicker">SYSTEM / {meta.index}</span>
+      <strong>BUILD</strong>
+      <span className="circuit-core-project">{project.name}</span>
+    </div>
+  )
+}
+
+function CircuitTerminal({
   project,
   index,
   active,
-  desktopPreview,
-  mobilePreviewOpen,
   onSelect,
-  onTogglePreview,
 }: {
   project: (typeof projects)[number]
   index: number
   active: boolean
-  desktopPreview: boolean
-  mobilePreviewOpen: boolean
   onSelect: () => void
-  onTogglePreview: () => void
 }) {
   const meta = projectMeta[project.name as keyof typeof projectMeta]
   const isPrivate = !project.link
 
   return (
-    <article
-      className={`project-node project-${meta.index} group ${active ? 'is-preview-active' : ''}`}
-      onMouseEnter={desktopPreview ? onSelect : undefined}
-      onFocusCapture={desktopPreview ? onSelect : undefined}
+    <button
+      type="button"
+      className={`circuit-terminal circuit-terminal-${meta.index} ${active ? 'is-active' : ''}`}
+      onClick={onSelect}
+      onMouseEnter={onSelect}
+      onFocus={onSelect}
+      aria-pressed={active}
     >
-      <div className="flex items-start justify-between gap-3">
-        <span className="project-index font-mono text-[11px] tracking-[0.18em] text-ember">{meta.index}</span>
-        {isPrivate ? (
-          <span className="project-private-status">
-            <LockKeyhole className="size-3" aria-hidden="true" /> PRIVATE / PROTECTED
-          </span>
-        ) : null}
-      </div>
-
-      <p className="project-category">{meta.category}</p>
-      <h3 className="project-name">{project.name}</h3>
-      <p className="project-description">{project.body}</p>
-
-      {project.stack.length > 0 ? (
-        <ul className="project-stack" aria-label={`${project.name} technologies`}>
-          {project.stack.filter((tech) => tech !== 'AI-assisted development').map((tech) => (
-            <li key={tech}><TechnologyTag>{tech}</TechnologyTag></li>
-          ))}
-        </ul>
-      ) : null}
-
-      <div className="project-actions">
-        {project.link ? (
-          <>
-            <span className="project-live-state"><span className="project-status-dot" /> LIVE</span>
-            <div className="project-action-links">
-              <button
-                type="button"
-                className="project-preview-button"
-                aria-expanded={mobilePreviewOpen}
-                aria-controls={`project-preview-${index}`}
-                onClick={onTogglePreview}
-              >
-                {mobilePreviewOpen ? <X className="size-3.5" aria-hidden="true" /> : <Eye className="size-3.5" aria-hidden="true" />}
-                {mobilePreviewOpen ? 'Close preview' : 'Preview'}
-              </button>
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`View ${project.name} live site (opens in a new tab)`}
-                className="project-live-link"
-              >
-                View Live Site <ArrowUpRight className="size-3.5" aria-hidden="true" />
-              </a>
-            </div>
-          </>
-        ) : (
-          <span className="project-protected-note">Protected client project · preview intentionally unavailable</span>
-        )}
-      </div>
-    </article>
+      <span className="circuit-terminal-topline">
+        <span className="circuit-terminal-index">{meta.index}</span>
+        <span className={`circuit-terminal-state ${isPrivate ? 'is-private' : ''}`}>
+          <i aria-hidden="true" />
+          {isPrivate ? 'PRIVATE' : 'LIVE'}
+        </span>
+      </span>
+      <strong>{project.name}</strong>
+      <span className="circuit-terminal-meta">{meta.annotation}</span>
+    </button>
   )
 }
 
-function SystemCore({ activeIndex }: { activeIndex: number | null }) {
-  const activeProject = activeIndex === null ? null : projects[activeIndex]
-  const activeMeta = activeProject ? projectMeta[activeProject.name as keyof typeof projectMeta] : null
-
-  return (
-    <div className={`system-core ${activeProject ? 'has-selection' : ''}`} aria-live="polite">
-      <span className="core-ring" aria-hidden="true"><span /></span>
-      {activeProject && activeMeta ? (
-        <>
-          <span className="system-core-kicker">SELECTED / {activeMeta.index}</span>
-          <strong className="system-core-name">{activeProject.name}</strong>
-          <span className="system-core-state">{activeProject.link ? 'LIVE PROJECT' : 'PRIVATE PROJECT'}</span>
-        </>
-      ) : (
-        <>
-          <span className="system-core-kicker">BUILD SYSTEM</span>
-          <span className="system-core-name">Web <i>•</i> AI <i>•</i> Automation</span>
-          <span className="system-core-state">Gabriel Patel</span>
-        </>
-      )}
-    </div>
-  )
-}
-
-function Connectors() {
-  return (
-    <svg className="connectors" viewBox="0 0 1000 760" preserveAspectRatio="none" aria-hidden="true">
-      <path className="connector connector-armani" d="M430 350 C355 285 285 205 170 135" />
-      <path className="connector connector-sales" d="M545 330 C635 255 720 190 835 135" />
-      <path className="connector connector-nexus" d="M565 375 C675 370 745 360 855 355" />
-      <path className="connector connector-forex" d="M520 430 C610 510 645 580 640 650" />
-      <path className="connector connector-merdicrat" d="M420 425 C345 500 275 565 165 620" />
-      <circle className="anchor" cx="430" cy="350" r="5" />
-      <circle className="anchor" cx="170" cy="135" r="5" />
-      <circle className="anchor" cx="545" cy="330" r="5" />
-      <circle className="anchor" cx="835" cy="135" r="5" />
-      <circle className="anchor" cx="565" cy="375" r="5" />
-      <circle className="anchor" cx="855" cy="355" r="5" />
-      <circle className="anchor" cx="520" cy="430" r="5" />
-      <circle className="anchor" cx="640" cy="650" r="5" />
-      <circle className="anchor" cx="420" cy="425" r="5" />
-      <circle className="anchor" cx="165" cy="620" r="5" />
-    </svg>
-  )
-}
-function ProjectPreview({ index, id }: { index: number; id?: string }) {
+function ProjectDetails({ index }: { index: number }) {
   const project = projects[index]
   const meta = projectMeta[project.name as keyof typeof projectMeta]
   const isPrivate = !project.link
 
   return (
-    <aside id={id} className={`work-preview ${isPrivate ? 'is-private' : ''}`} aria-live="polite">
-      <div className="work-preview-rail">
-        <div className="work-preview-rail-left">
-          <span className={`work-preview-status ${isPrivate ? 'is-private' : ''}`} aria-hidden="true" />
-          <span className="work-preview-label">{isPrivate ? 'PROTECTED PROJECT' : 'LIVE PROJECT VIEW'}</span>
-          <span className="work-preview-domain">{meta.domain}</span>
+    <article className="circuit-project-details" aria-live="polite">
+      <div className="circuit-project-details-head">
+        <div>
+          <span className="circuit-project-eyebrow">{meta.index} / {meta.category}</span>
+          <h3>{project.name}</h3>
         </div>
-        {project.link ? (
-          <a href={project.link} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.name} in a new tab`}>
-            Open live site <ArrowUpRight className="size-3.5" aria-hidden="true" />
-          </a>
-        ) : null}
+        <span className={`circuit-project-status ${isPrivate ? 'is-private' : ''}`}>
+          {isPrivate ? <LockKeyhole className="size-3.5" aria-hidden="true" /> : <i aria-hidden="true" />}
+          {isPrivate ? 'PRIVATE / PROTECTED' : 'LIVE PROJECT'}
+        </span>
       </div>
 
-      {project.link ? (
-        <div className="work-preview-viewport">
-          <div className="work-preview-loading" aria-hidden="true">
-            <span>{meta.index}</span>
-            <strong>{project.name}</strong>
-            <small>Loading live project preview…</small>
-          </div>
-          <iframe
-            key={project.link}
-            src={project.link}
-            title={`${project.name} live website preview`}
-            loading="lazy"
-            referrerPolicy="no-referrer"
-            tabIndex={-1}
-            aria-hidden="true"
-          />
-          <div className="work-preview-shade" aria-hidden="true" />
+      <div className="circuit-project-details-grid">
+        <p>{project.body}</p>
+        <div className="circuit-project-side">
+          {project.stack.length > 0 ? (
+            <ul className="circuit-project-stack" aria-label={`${project.name} technologies`}>
+              {project.stack.filter((tech) => tech !== 'AI-assisted development').map((tech) => (
+                <li key={tech}>{tech}</li>
+              ))}
+            </ul>
+          ) : (
+            <span className="circuit-project-domain">{meta.domain}</span>
+          )}
+
+          {project.link ? (
+            <a href={project.link} target="_blank" rel="noopener noreferrer" className="circuit-project-link">
+              View live site <ArrowUpRight className="size-4" aria-hidden="true" />
+            </a>
+          ) : (
+            <p className="circuit-project-private-copy">
+              {'privateDescription' in meta
+                ? meta.privateDescription
+                : 'This project is intentionally presented without exposing its private deployment.'}
+            </p>
+          )}
         </div>
-      ) : (
-        <div className="work-preview-private">
-          <div className="work-preview-private-icon"><LockKeyhole className="size-5" aria-hidden="true" /></div>
-          <div>
-            <span>PRIVATE / PROTECTED</span>
-            <strong>{project.name}</strong>
-            <p>{'privateDescription' in meta ? meta.privateDescription : 'This project is represented at a high level while its private deployment and internal details remain intentionally unavailable.'}</p>
-          </div>
+      </div>
+    </article>
+  )
+}
+
+function LiveProjectPreview({ index }: { index: number }) {
+  const project = projects[index]
+  if (!project.link) return null
+
+  const meta = projectMeta[project.name as keyof typeof projectMeta]
+
+  return (
+    <aside className="work-preview circuit-live-preview" aria-live="polite">
+      <div className="work-preview-rail">
+        <div className="work-preview-rail-left">
+          <span className="work-preview-status" aria-hidden="true" />
+          <span className="work-preview-label">LIVE PROJECT VIEW</span>
+          <span className="work-preview-domain">{meta.domain}</span>
         </div>
-      )}
+        <a href={project.link} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.name} in a new tab`}>
+          Open live site <ArrowUpRight className="size-3.5" aria-hidden="true" />
+        </a>
+      </div>
+      <div className="work-preview-viewport">
+        <div className="work-preview-loading" aria-hidden="true">
+          <span>{meta.index}</span>
+          <strong>{project.name}</strong>
+          <small>Loading live project preview…</small>
+        </div>
+        <iframe
+          key={project.link}
+          src={project.link}
+          title={`${project.name} live website preview`}
+          loading="lazy"
+          referrerPolicy="no-referrer"
+          tabIndex={-1}
+          aria-hidden="true"
+        />
+        <div className="work-preview-shade" aria-hidden="true" />
+      </div>
     </aside>
   )
 }
 
 export function Work() {
-  const [active, setActive] = useState<number | null>(null)
-  const [desktopPreview, setDesktopPreview] = useState(false)
-
-  useEffect(() => {
-    const media = window.matchMedia('(min-width: 901px)')
-    const sync = () => {
-      setDesktopPreview(media.matches)
-      setActive((current) => media.matches ? (current ?? 0) : null)
-    }
-    sync()
-    media.addEventListener('change', sync)
-    return () => media.removeEventListener('change', sync)
-  }, [])
-
-  const toggleMobilePreview = (index: number) => {
-    if (desktopPreview) return
-    setActive((current) => current === index ? null : index)
-  }
+  const [active, setActive] = useState(0)
 
   return (
     <Section id="work" index="03" kicker="Projects" title="Selected work">
-      <p className="work-lede">Real projects built, deployed, and refined around practical business and user needs.</p>
-      <div className="diagram-canvas" data-active={active ?? ''}>
-        <div className="corner-mark corner-top" aria-hidden="true" />
-        <div className="corner-mark corner-bottom" aria-hidden="true" />
-        <Connectors />
-        <div className="diagram-annotation annotation-armani">CLIENT SYSTEMS</div>
-        <div className="diagram-annotation annotation-sales">AGENT ORCHESTRATION</div>
-        <div className="diagram-annotation annotation-nexus">HEALTHCARE</div>
-        <div className="diagram-annotation annotation-forex">DIGITAL PRODUCT</div>
-        <div className="diagram-annotation annotation-merdicrat">WEB DELIVERY</div>
-        <SystemCore activeIndex={active} />
-        {projects.map((project, index) => (
-          <ProjectNode
-            key={project.name}
-            project={project}
-            index={index}
-            active={active === index}
-            desktopPreview={desktopPreview}
-            mobilePreviewOpen={!desktopPreview && active === index}
-            onSelect={() => setActive(index)}
-            onTogglePreview={() => toggleMobilePreview(index)}
-          />
-        ))}
+      <p className="work-lede">A connected view of the systems, products, and client work I have built and shipped.</p>
+
+      <div className="circuit-board" data-active={active}>
+        <div className="circuit-board-grid" aria-hidden="true" />
+        <div className="circuit-board-label circuit-board-label-a">PROJECT NETWORK</div>
+        <div className="circuit-board-label circuit-board-label-b">05 ACTIVE NODES</div>
+        <CircuitNetwork />
+        <CircuitCore activeIndex={active} />
+
+        <div className="circuit-terminal-list">
+          {projects.map((project, index) => (
+            <CircuitTerminal
+              key={project.name}
+              project={project}
+              index={index}
+              active={active === index}
+              onSelect={() => setActive(index)}
+            />
+          ))}
+        </div>
       </div>
 
-      {active !== null ? <ProjectPreview index={active} id={`project-preview-${active}`} /> : (
-        <>
-          <div className="work-preview-placeholder" aria-hidden="true">
-            <span>LIVE PROJECT VIEW</span>
-            <strong>Select a project to inspect the live interface</strong>
-          </div>
-          <p className="work-preview-mobile-hint">Tap Preview on a public project to inspect it here without leaving the portfolio.</p>
-        </>
-      )}
+      <ProjectDetails index={active} />
+      <LiveProjectPreview index={active} />
     </Section>
   )
 }
