@@ -2113,3 +2113,161 @@ body {
   .pcb-route-end,
   .project-endpoint { transition: none; }
 }
+
+
+/* ================================================================
+   PROJECT NETWORK — rendering fix + premium refinement
+   ================================================================ */
+.project-map-svg {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.project-map-traces path,
+.project-map-routes path {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: square;
+  stroke-linejoin: round;
+}
+.project-map-traces path {
+  stroke: rgba(148,163,184,.14);
+  stroke-width: 1;
+}
+.project-map-traces .pcb-trace-muted {
+  stroke: rgba(91,140,255,.10);
+}
+.project-map-routes .pcb-route {
+  stroke: rgba(91,140,255,.26);
+  stroke-width: 1.25;
+  transition: stroke .22s ease, stroke-width .22s ease, filter .22s ease;
+}
+.project-map-vias .pcb-via {
+  fill: #0a0f18;
+  stroke: rgba(148,163,184,.38);
+  stroke-width: 1.1;
+  vector-effect: non-scaling-stroke;
+}
+.project-map-ends .pcb-route-end {
+  fill: #0a0f18;
+  stroke: #5b8cff;
+  stroke-width: 1.6;
+  vector-effect: non-scaling-stroke;
+}
+
+.project-matrix[data-active="0"] .pcb-route-01,
+.project-matrix[data-active="1"] .pcb-route-02,
+.project-matrix[data-active="2"] .pcb-route-03,
+.project-matrix[data-active="3"] .pcb-route-04,
+.project-matrix[data-active="4"] .pcb-route-05 {
+  stroke: #7dd3fc;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 3px rgba(125,211,252,.24));
+}
+.project-matrix[data-active="0"] .pcb-end-01,
+.project-matrix[data-active="1"] .pcb-end-02,
+.project-matrix[data-active="2"] .pcb-end-03,
+.project-matrix[data-active="3"] .pcb-end-04,
+.project-matrix[data-active="4"] .pcb-end-05 {
+  fill: #ff7a45;
+  stroke: #ffb090;
+  filter: drop-shadow(0 0 6px rgba(255,122,69,.38));
+}
+
+.project-endpoint-list {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  pointer-events: none;
+}
+.project-endpoint {
+  pointer-events: auto;
+}
+.project-endpoint-number {
+  min-width: 1.6rem;
+  font-family: var(--font-mono);
+  font-size: .58rem;
+  letter-spacing: .16em;
+  color: #ff7a45;
+}
+.project-endpoint-copy {
+  min-width: 0;
+}
+.project-endpoint-copy strong {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: .88rem;
+  font-weight: 560;
+  letter-spacing: -.02em;
+  color: #f4f7fb;
+  white-space: nowrap;
+}
+.project-endpoint-copy span {
+  display: block;
+  margin-top: .2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: var(--font-mono);
+  font-size: .48rem;
+  letter-spacing: .12em;
+  color: #637087;
+  white-space: nowrap;
+}
+.project-endpoint-state {
+  white-space: nowrap;
+}
+.project-endpoint-01 { top: 118px; left: 28px; }
+.project-endpoint-02 { top: 118px; right: 28px; }
+.project-endpoint-03 { top: 330px; right: 28px; }
+.project-endpoint-04 { right: 168px; bottom: 54px; }
+.project-endpoint-05 { left: 28px; bottom: 54px; }
+
+.project-core {
+  width: 132px;
+  height: 132px;
+}
+.project-core-body {
+  inset: 9px;
+}
+.project-core-pin-a { top: 7px; left: 26px; }
+.project-core-pin-b { top: 7px; right: 26px; }
+.project-core-pin-c { right: 7px; bottom: 26px; top: auto; }
+.project-core-pin-d { bottom: 7px; left: 26px; right: auto; }
+
+.project-inspector-domain {
+  font-family: var(--font-mono);
+  font-size: .62rem;
+  letter-spacing: .08em;
+  color: #78869c;
+}
+
+@media (max-width: 1099px) and (min-width: 768px) {
+  .project-matrix { min-height: 760px; }
+  .project-endpoint { width: 196px; }
+  .project-endpoint-01 { left: 18px; }
+  .project-endpoint-02 { right: 18px; }
+  .project-endpoint-03 { right: 18px; top: 342px; }
+  .project-endpoint-04 { right: 84px; bottom: 46px; }
+  .project-endpoint-05 { left: 18px; bottom: 46px; }
+}
+
+@media (max-width: 767px) {
+  .project-map-svg { display: none; }
+  .project-endpoint-list {
+    position: relative;
+    inset: auto;
+    display: grid;
+    pointer-events: auto;
+  }
+  .project-endpoint {
+    position: relative;
+    inset: auto !important;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+  }
+}
