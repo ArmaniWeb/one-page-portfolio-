@@ -39,6 +39,12 @@ export const projects = [
     link: 'https://armaniwebdesign.com',
   },
   {
+    name: 'AI Sales Operating System',
+    kind: 'AI SALES OPERATIONS SYSTEM',
+    body: 'A reusable AI-assisted sales operations framework that starts with business discovery, then coordinates specialized agents across prospecting, qualification, outreach, inbox management, CRM activity, and supervised workflow improvement.',
+    stack: ['AI Agents', 'LLM Workflows', 'CRM Integration', 'Workflow Automation', 'Evaluation & QA'],
+  },
+  {
     name: 'Nexus Health',
     kind: 'HEALTHCARE WEB PLATFORM',
     body: 'A production healthcare website built for a private medical practice, with responsive service architecture, search-conscious content structure, administrative functionality, and modern deployment infrastructure.',
