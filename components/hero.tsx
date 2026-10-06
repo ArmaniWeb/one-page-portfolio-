@@ -59,7 +59,9 @@ export function Hero() {
       </div>
 
       <div className="hero-content site-container relative z-10 mx-auto max-w-7xl px-4 pb-[clamp(4.5rem,10vw,8rem)] pt-[clamp(8.5rem,16vw,12rem)]">
-        <div className="hero-entry hero-entry-1 inline-flex items-center gap-2 rounded-full border border-border bg-card/50 px-3 py-1 font-mono text-xs text-muted-foreground">
+        <div className="hero-layout">
+          <div className="hero-copy">
+        <div className="hero-entry hero-entry-1 hero-availability inline-flex items-center gap-2 rounded-full border border-border bg-card/50 px-3 py-1 font-mono text-xs text-muted-foreground">
           <span className="relative flex h-1.5 w-1.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-signal opacity-60" />
             <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-ember" />
@@ -67,9 +69,9 @@ export function Hero() {
           Available for remote roles
         </div>
 
-        <h1 className="hero-entry hero-entry-2 mt-6 max-w-4xl text-balance text-[clamp(2.25rem,6vw,4.75rem)] font-semibold leading-[1.02] tracking-tight">
-          {profile.name}
-          <span className="mt-3 block text-2xl font-normal text-muted-foreground sm:text-3xl md:text-4xl">
+        <h1 className="hero-entry hero-entry-2 mt-6 max-w-4xl text-balance text-[clamp(2.6rem,6.3vw,5.15rem)] font-semibold leading-[.98] tracking-tight">
+          <span className="hero-name">{profile.name}</span>
+          <span className="hero-role mt-4 block text-2xl font-medium sm:text-3xl md:text-4xl">
             {profile.role}
           </span>
         </h1>
@@ -81,7 +83,7 @@ export function Hero() {
         <div className="hero-entry hero-entry-4 mt-9 flex flex-wrap items-center gap-3">
           <a
             href="#work"
-            className="inline-flex items-center gap-1.5 rounded-md bg-signal px-4 py-2.5 text-sm font-medium text-signal-foreground transition-opacity hover:opacity-90"
+            className="hero-primary-cta inline-flex items-center gap-1.5 rounded-md px-4 py-2.5 text-sm font-medium text-signal-foreground"
           >
             View Projects
             <ArrowUpRight className="size-4" />
@@ -89,7 +91,7 @@ export function Hero() {
           <a
             href={`mailto:${profile.email}`}
             aria-label="Email Gabriel Patel"
-            className="inline-flex items-center gap-1.5 rounded-md border border-border px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-signal/60"
+            className="hero-secondary-cta inline-flex items-center gap-1.5 rounded-md border border-border px-4 py-2.5 text-sm font-medium text-foreground"
           >
             <Mail className="size-4" />
             Contact me
@@ -99,7 +101,7 @@ export function Hero() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="View Gabriel Patel's resume"
-            className="inline-flex items-center gap-1.5 rounded-md border border-border px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-signal/60"
+            className="hero-secondary-cta inline-flex items-center gap-1.5 rounded-md border border-border px-4 py-2.5 text-sm font-medium text-foreground"
           >
             <FileText className="size-4" />
             Resume
@@ -138,6 +140,46 @@ export function Hero() {
             Email
           </a>
         </nav>
+
+          </div>
+
+          <aside className="hero-spectrum hero-entry hero-entry-6" aria-label="Capability overview">
+            <div className="hero-spectrum-glow hero-spectrum-glow-a" aria-hidden="true" />
+            <div className="hero-spectrum-glow hero-spectrum-glow-b" aria-hidden="true" />
+            <div className="hero-spectrum-frame">
+              <div className="hero-spectrum-topline">
+                <span>BUILD SYSTEM / ACTIVE</span>
+                <i aria-hidden="true" />
+              </div>
+
+              <div className="hero-spectrum-core">
+                <span>FROM IDEA TO PRODUCTION</span>
+                <strong>Design. Build.<br />Automate. Ship.</strong>
+                <p>Technical systems shaped around real business problems, not demo projects.</p>
+              </div>
+
+              <div className="hero-spectrum-bands">
+                <div className="hero-spectrum-band hero-spectrum-band-violet">
+                  <span>01</span><strong>AI SYSTEMS</strong><i />
+                </div>
+                <div className="hero-spectrum-band hero-spectrum-band-cyan">
+                  <span>02</span><strong>FULL STACK</strong><i />
+                </div>
+                <div className="hero-spectrum-band hero-spectrum-band-coral">
+                  <span>03</span><strong>AUTOMATION</strong><i />
+                </div>
+                <div className="hero-spectrum-band hero-spectrum-band-gold">
+                  <span>04</span><strong>PRODUCTION</strong><i />
+                </div>
+              </div>
+
+              <div className="hero-spectrum-footer">
+                <span>SEATTLE / REMOTE</span>
+                <span>BUILD MODE</span>
+              </div>
+            </div>
+          </aside>
+        </div>
 
         <a href="#about" className="hero-scroll-cue" aria-label="Scroll to About section">
           <span>Explore</span>
