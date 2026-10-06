@@ -42,73 +42,54 @@ const projectMeta = {
   },
 } as const
 
-function CircuitNetwork() {
+function ProjectMap() {
   return (
-    <svg className="pcb-map" viewBox="0 0 1200 720" preserveAspectRatio="none" aria-hidden="true">
-      <g className="pcb-traces">
-        <path d="M560 306 H510 V258 H454 V214 H392 V174 H324" />
-        <path d="M548 322 H486 V294 H430 V250 H366 V220 H294" />
-        <path d="M540 340 H470 V328 H404 V300 H338 V282 H250" />
-        <path d="M540 360 H464 V372 H394 V400 H326 V420 H238" />
-        <path d="M548 380 H480 V416 H414 V464 H354 V510 H286" />
-        <path d="M560 396 H510 V450 H462 V504 H404 V556 H326" />
-
-        <path d="M640 306 H690 V256 H744 V216 H808 V176 H876" />
-        <path d="M652 322 H714 V292 H772 V252 H836 V220 H908" />
-        <path d="M660 340 H730 V326 H796 V300 H862 V282 H952" />
-        <path d="M660 360 H736 V372 H806 V402 H874 V420 H962" />
-        <path d="M652 380 H720 V416 H786 V464 H846 V510 H914" />
-        <path d="M640 396 H690 V450 H738 V504 H796 V556 H874" />
-
-        <path d="M578 290 V244 H548 V194 H520 V144 H486 V94" />
-        <path d="M596 290 V232 H584 V172 H572 V114 H550 V64" />
-        <path d="M614 290 V232 H626 V172 H640 V114 H662 V64" />
-        <path d="M632 290 V244 H662 V194 H692 V144 H724 V94" />
-
-        <path d="M578 410 V456 H548 V506 H520 V556 H486 V616" />
-        <path d="M596 410 V468 H584 V528 H572 V586 H550 V656" />
-        <path d="M614 410 V468 H626 V528 H640 V586 H662 V656" />
-        <path d="M632 410 V456 H662 V506 H692 V556 H724 V616" />
+    <svg className="project-map-svg" viewBox="0 0 1200 720" preserveAspectRatio="none" aria-hidden="true">
+      <g className="project-map-traces">
+        <path className="pcb-trace" d="M548 324 H500 V278 H430 V230 H360" />
+        <path className="pcb-trace pcb-trace-muted" d="M548 342 H470 V320 H400 V288 H320" />
+        <path className="pcb-trace" d="M652 324 H700 V278 H770 V230 H840" />
+        <path className="pcb-trace pcb-trace-muted" d="M652 342 H730 V320 H800 V288 H880" />
+        <path className="pcb-trace pcb-trace-muted" d="M548 382 H482 V414 H414 V452 H342" />
+        <path className="pcb-trace" d="M652 382 H718 V414 H786 V452 H858" />
+        <path className="pcb-trace pcb-trace-muted" d="M580 294 V250 H550 V206 H520 V164" />
+        <path className="pcb-trace pcb-trace-muted" d="M620 294 V250 H650 V206 H680 V164" />
+        <path className="pcb-trace pcb-trace-muted" d="M580 406 V454 H552 V504 H528 V552" />
+        <path className="pcb-trace pcb-trace-muted" d="M620 406 V454 H648 V504 H672 V552" />
       </g>
 
-      <g className="pcb-routes">
-        <path className="pcb-route pcb-route-01" d="M548 324 H488 V284 H422 V230 H360 V182 H290 V134" />
-        <path className="pcb-route pcb-route-02" d="M652 324 H716 V282 H782 V226 H846 V176 H914 V126" />
-        <path className="pcb-route pcb-route-03" d="M660 350 H752 V350 H836 V350 H918 V350 H1010" />
-        <path className="pcb-route pcb-route-04" d="M644 396 H700 V452 H756 V516 H810 V574 H858 V626" />
-        <path className="pcb-route pcb-route-05" d="M556 396 H500 V452 H444 V516 H388 V566 H316 V620" />
+      <g className="project-map-routes">
+        <path className="pcb-route pcb-route-01" d="M548 330 H476 V278 H398 V214 H318 V152 H260" />
+        <path className="pcb-route pcb-route-02" d="M652 330 H724 V278 H802 V214 H882 V152 H940" />
+        <path className="pcb-route pcb-route-03" d="M652 370 H742 V392 H832 V420 H930 V430 H1016" />
+        <path className="pcb-route pcb-route-04" d="M620 406 V470 H654 V524 H690 V574 H706 V628" />
+        <path className="pcb-route pcb-route-05" d="M548 382 H470 V426 H390 V482 H316 V540 H254" />
       </g>
 
-      <g className="pcb-route-ends">
-        {[290, 914, 1010, 858, 316].map((x, i) => {
-          const ys = [134, 126, 350, 626, 620]
-          return <circle key={x} cx={x} cy={ys[i]} r="6" className={`pcb-route-end contact-${String(i + 1).padStart(2, '0')}`} />
-        })}
+      <g className="project-map-vias">
+        <circle className="pcb-via" cx="398" cy="214" r="3" />
+        <circle className="pcb-via" cx="802" cy="214" r="3" />
+        <circle className="pcb-via" cx="832" cy="420" r="3" />
+        <circle className="pcb-via" cx="690" cy="574" r="3" />
+        <circle className="pcb-via" cx="390" cy="482" r="3" />
+        <circle className="pcb-via" cx="520" cy="164" r="3" />
+        <circle className="pcb-via" cx="680" cy="164" r="3" />
+        <circle className="pcb-via" cx="528" cy="552" r="3" />
+        <circle className="pcb-via" cx="672" cy="552" r="3" />
       </g>
 
-      <g className="pcb-vias">
-        <circle cx="324" cy="174" r="3" />
-        <circle cx="250" cy="282" r="3" />
-        <circle cx="238" cy="420" r="3" />
-        <circle cx="286" cy="510" r="3" />
-        <circle cx="876" cy="176" r="3" />
-        <circle cx="952" cy="282" r="3" />
-        <circle cx="962" cy="420" r="3" />
-        <circle cx="914" cy="510" r="3" />
-        <circle cx="486" cy="94" r="3" />
-        <circle cx="550" cy="64" r="3" />
-        <circle cx="662" cy="64" r="3" />
-        <circle cx="724" cy="94" r="3" />
-        <circle cx="486" cy="616" r="3" />
-        <circle cx="550" cy="656" r="3" />
-        <circle cx="662" cy="656" r="3" />
-        <circle cx="724" cy="616" r="3" />
+      <g className="project-map-ends">
+        <circle className="pcb-route-end pcb-end-01" cx="260" cy="152" r="6" />
+        <circle className="pcb-route-end pcb-end-02" cx="940" cy="152" r="6" />
+        <circle className="pcb-route-end pcb-end-03" cx="1016" cy="430" r="6" />
+        <circle className="pcb-route-end pcb-end-04" cx="706" cy="628" r="6" />
+        <circle className="pcb-route-end pcb-end-05" cx="254" cy="540" r="6" />
       </g>
     </svg>
   )
 }
 
-function CircuitCore({ activeIndex }: { activeIndex: number }) {
+function ProjectCore({ activeIndex }: { activeIndex: number }) {
   const project = projects[activeIndex]
   const meta = projectMeta[project.name as keyof typeof projectMeta]
 
@@ -118,10 +99,6 @@ function CircuitCore({ activeIndex }: { activeIndex: number }) {
       <span className="project-core-pin project-core-pin-b" aria-hidden="true" />
       <span className="project-core-pin project-core-pin-c" aria-hidden="true" />
       <span className="project-core-pin project-core-pin-d" aria-hidden="true" />
-      <span className="project-core-pin project-core-pin-e" aria-hidden="true" />
-      <span className="project-core-pin project-core-pin-f" aria-hidden="true" />
-      <span className="project-core-pin project-core-pin-g" aria-hidden="true" />
-      <span className="project-core-pin project-core-pin-h" aria-hidden="true" />
       <div className="project-core-body">
         <span className="project-core-kicker">SYSTEM / {meta.index}</span>
         <strong className="project-core-title">BUILD</strong>
@@ -131,14 +108,12 @@ function CircuitCore({ activeIndex }: { activeIndex: number }) {
   )
 }
 
-function CircuitTerminal({
+function ProjectEndpoint({
   project,
-  index,
   active,
   onSelect,
 }: {
   project: (typeof projects)[number]
-  index: number
   active: boolean
   onSelect: () => void
 }) {
@@ -154,20 +129,20 @@ function CircuitTerminal({
       onFocus={onSelect}
       aria-pressed={active}
     >
-      <span className="project-endpoint-topline">
-        <span className="project-endpoint-index">{meta.index}</span>
-        <span className={`project-endpoint-state ${isPrivate ? 'is-private' : ''}`}>
-          <i aria-hidden="true" />
-          {isPrivate ? 'PRIVATE' : 'LIVE'}
-        </span>
+      <span className="project-endpoint-number">{meta.index}</span>
+      <span className="project-endpoint-copy">
+        <strong>{project.name}</strong>
+        <span>{meta.annotation}</span>
       </span>
-      <strong>{project.name}</strong>
-      <span className="project-endpoint-meta">{meta.annotation}</span>
+      <span className={`project-endpoint-state ${isPrivate ? 'is-private' : ''}`}>
+        <i aria-hidden="true" />
+        {isPrivate ? 'PRIVATE' : 'LIVE'}
+      </span>
     </button>
   )
 }
 
-function ProjectDetails({ index }: { index: number }) {
+function ProjectInspector({ index }: { index: number }) {
   const project = projects[index]
   const meta = projectMeta[project.name as keyof typeof projectMeta]
   const isPrivate = !project.link
@@ -195,7 +170,7 @@ function ProjectDetails({ index }: { index: number }) {
               ))}
             </ul>
           ) : (
-            <span className="circuit-project-domain">{meta.domain}</span>
+            <span className="project-inspector-domain">{meta.domain}</span>
           )}
 
           {project.link ? (
@@ -262,18 +237,16 @@ export function Work() {
       <p className="work-lede">A connected view of the systems, products, and client work I have built and shipped.</p>
 
       <div className="project-matrix" data-active={active}>
-        <div className="project-matrix-grid" aria-hidden="true" />
-        <div className="project-matrix-label project-matrix-label-a">PROJECT NETWORK</div>
-        <div className="project-matrix-label project-matrix-label-b">05 ACTIVE NODES</div>
-        <CircuitNetwork />
-        <CircuitCore activeIndex={active} />
+        <div className="project-matrix-meta project-matrix-meta-left">PROJECT NETWORK</div>
+        <div className="project-matrix-meta project-matrix-meta-right"><i aria-hidden="true" /> 05 NODES</div>
+        <ProjectMap />
+        <ProjectCore activeIndex={active} />
 
         <div className="project-endpoint-list">
           {projects.map((project, index) => (
-            <CircuitTerminal
+            <ProjectEndpoint
               key={project.name}
               project={project}
-              index={index}
               active={active === index}
               onSelect={() => setActive(index)}
             />
@@ -281,7 +254,7 @@ export function Work() {
         </div>
       </div>
 
-      <ProjectDetails index={active} />
+      <ProjectInspector index={active} />
       <LiveProjectPreview index={active} />
     </Section>
   )
