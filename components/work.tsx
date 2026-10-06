@@ -45,6 +45,54 @@ const projectMeta = {
   },
 } as const
 
+
+const projectCaseStudies = {
+  'Armani Web Design': {
+    challenge:
+      'Build a credible web-solutions business while handling design, development, lead generation, delivery, and ongoing client work without a large internal team.',
+    build:
+      'A production web platform paired with practical business tooling: responsive service pages, conversion-focused UX, lead workflows, AI-assisted website analysis, and repeatable deployment patterns.',
+    evidence: [
+      'Next.js + React production implementation',
+      'Supabase-backed tooling and lead workflows',
+      'GitHub + Vercel deployment workflow',
+      'AI-assisted analysis and automation features',
+    ],
+    outcome: '10+ client projects delivered and $20K+ in revenue generated through the business.',
+    architecture: ['Customer need', 'Web experience', 'Lead systems', 'Automation', 'Delivery'],
+  },
+  'AI Sales Operating System': {
+    challenge:
+      'Replace disconnected sales tasks with one configurable operating system that can first understand a business, then coordinate specialized AI agents without turning into an uncontrolled black box.',
+    build:
+      'A discovery-first sales framework with specialized agents for prospecting, qualification, outreach, inbox handling, CRM activity, and supervisory review, designed to work with an existing CRM rather than replace it.',
+    evidence: [
+      'Versioned contracts and release validation',
+      'Deterministic buyer-likelihood scoring',
+      'CRM integration and adapter architecture',
+      'Automated validation and regression testing',
+    ],
+    outcome:
+      'A reusable, installation-oriented system that can be configured around a business while preserving review, logging, and operational guardrails.',
+    architecture: ['Discovery', 'Specialized agents', 'Shared context', 'CRM', 'Supervisor'],
+  },
+  'Nexus Health': {
+    challenge:
+      'Turn a broad healthcare service offering into a calm, credible, production-ready patient-facing website while protecting private client infrastructure and supporting future operational integrations.',
+    build:
+      'A responsive healthcare platform covering service architecture, patient resources, search-conscious content, structured data, protected staging, and a deployment setup designed for maintainability.',
+    evidence: [
+      '26 / 26 static pages completed',
+      'Next.js + Supabase + Vercel production stack',
+      'Protected staging and secret-handling checks',
+      'Node 22 deployment and keepalive planning',
+    ],
+    outcome:
+      'A complete protected build prepared for staging review and production rollout without exposing the private client deployment.',
+    architecture: ['Service model', 'Content architecture', 'Responsive UI', 'Data layer', 'Deployment'],
+  },
+} as const
+
 function ProjectMap() {
   return (
     <svg className="project-map-svg" viewBox="0 0 900 680" preserveAspectRatio="none" aria-hidden="true">
@@ -229,6 +277,52 @@ function ProjectInspector({ index }: { index: number }) {
             <li key={tech}>{tech}</li>
           ))}
         </ul>
+      ) : null}
+
+      {project.name in projectCaseStudies ? (
+        <div className="project-case-study">
+          {(() => {
+            const study = projectCaseStudies[project.name as keyof typeof projectCaseStudies]
+            return (
+              <>
+                <div className="project-case-study-grid">
+                  <section>
+                    <span>01 / CHALLENGE</span>
+                    <p>{study.challenge}</p>
+                  </section>
+                  <section>
+                    <span>02 / BUILD</span>
+                    <p>{study.build}</p>
+                  </section>
+                </div>
+
+                <div className="project-architecture" aria-label={`${project.name} architecture overview`}>
+                  <span className="project-case-label">03 / SYSTEM FLOW</span>
+                  <div className="project-architecture-flow">
+                    {study.architecture.map((item, itemIndex) => (
+                      <div className="project-architecture-step" key={item}>
+                        <strong>{String(itemIndex + 1).padStart(2, '0')}</strong>
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="project-evidence">
+                  <span className="project-case-label">04 / ENGINEERING EVIDENCE</span>
+                  <ul>
+                    {study.evidence.map((item) => <li key={item}>{item}</li>)}
+                  </ul>
+                </div>
+
+                <div className="project-outcome">
+                  <span className="project-case-label">05 / OUTCOME</span>
+                  <p>{study.outcome}</p>
+                </div>
+              </>
+            )
+          })()}
+        </div>
       ) : null}
     </aside>
   )
