@@ -1,6 +1,3 @@
-'use client'
-
-import { useState } from 'react'
 import { Section } from '@/components/section'
 import { focusAreas } from '@/lib/content'
 
@@ -12,8 +9,6 @@ const terms = [
 ]
 
 export function Focus() {
-  const [active, setActive] = useState<number | null>(null)
-
   return (
     <Section id="focus" index="02" kicker="Capabilities" title="Areas of focus">
       <p className="focus-lede">The areas where I spend most of my time building, solving, and improving.</p>
@@ -24,15 +19,10 @@ export function Focus() {
           <p>Four areas that shape how I approach digital products, AI-enabled workflows, and technical implementation.</p>
           <span className="capability-index-rule" aria-hidden="true" />
         </aside>
-        <div className="capability-ledger" onMouseLeave={() => setActive(null)}>
+
+        <div className="capability-ledger">
           {focusAreas.map((area, index) => (
-            <article
-              key={area.title}
-              tabIndex={0}
-              className={`capability-row ${active === index ? 'is-active' : ''}`}
-              onMouseEnter={() => setActive(index)}
-              onFocus={() => setActive(index)}
-            >
+            <article key={area.title} className="capability-row">
               <span className="capability-row-number">0{index + 1}</span>
               <div className="capability-row-main">
                 <h3>{area.title}</h3>
